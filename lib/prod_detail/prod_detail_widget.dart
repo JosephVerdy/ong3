@@ -6,12 +6,9 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart'
-    as smooth_page_indicator;
+import 'package:smooth_page_indicator/smooth_page_indicator.dart' as smooth_page_indicator;
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ProdDetailWidget extends StatefulWidget {
   const ProdDetailWidget({
@@ -116,44 +113,32 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                             ),
                           );
                         }
-                        List<ImagesRecord> pageViewImagesRecordList =
-                            snapshot.data!;
+                        List<ImagesRecord> pageViewImagesRecordList = snapshot.data!;
                         return Container(
                           width: double.infinity,
                           height: 500,
                           child: Stack(
                             children: [
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
+                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
                                 child: PageView.builder(
-                                  controller: pageViewController ??=
-                                      PageController(
-                                          initialPage: min(
-                                              0,
-                                              pageViewImagesRecordList.length -
-                                                  1)),
+                                  controller: pageViewController ??= PageController(initialPage: min(0, pageViewImagesRecordList.length - 1)),
                                   scrollDirection: Axis.horizontal,
                                   itemCount: pageViewImagesRecordList.length,
                                   itemBuilder: (context, pageViewIndex) {
-                                    final pageViewImagesRecord =
-                                        pageViewImagesRecordList[pageViewIndex];
+                                    final pageViewImagesRecord = pageViewImagesRecordList[pageViewIndex];
                                     return StreamBuilder<ImagesRecord>(
-                                      stream: ImagesRecord.getDocument(
-                                          pageViewImagesRecord.reference),
+                                      stream: ImagesRecord.getDocument(pageViewImagesRecord.reference),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
                                         if (!snapshot.hasData) {
                                           return Center(
                                             child: LinearProgressIndicator(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryColor,
+                                              color: FlutterFlowTheme.of(context).primaryColor,
                                             ),
                                           );
                                         }
-                                        final imageImagesRecord =
-                                            snapshot.data!;
+                                        final imageImagesRecord = snapshot.data!;
                                         return Image.network(
                                           imageImagesRecord.path!,
                                           width: 100,
@@ -168,17 +153,9 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                               Align(
                                 alignment: AlignmentDirectional(0, 0.9),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 10),
-                                  child:
-                                      smooth_page_indicator.SmoothPageIndicator(
-                                    controller: pageViewController ??=
-                                        PageController(
-                                            initialPage: min(
-                                                0,
-                                                pageViewImagesRecordList
-                                                        .length -
-                                                    1)),
+                                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                                  child: smooth_page_indicator.SmoothPageIndicator(
+                                    controller: pageViewController ??= PageController(initialPage: min(0, pageViewImagesRecordList.length - 1)),
                                     count: pageViewImagesRecordList.length,
                                     axisDirection: Axis.horizontal,
                                     onDotClicked: (i) {
@@ -213,24 +190,20 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         StreamBuilder<OngsRecord>(
-                          stream: OngsRecord.getDocument(
-                              prodDetailProductsRecord.ong!),
+                          stream: OngsRecord.getDocument(prodDetailProductsRecord.ong!),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
                             if (!snapshot.hasData) {
                               return Center(
                                 child: LinearProgressIndicator(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
+                                  color: FlutterFlowTheme.of(context).primaryColor,
                                 ),
                               );
                             }
                             final textOngsRecord = snapshot.data!;
                             return Text(
                               textOngsRecord.name!,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
+                              style: FlutterFlowTheme.of(context).bodyText1.override(
                                     fontFamily: 'Montserrat',
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
@@ -241,12 +214,11 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                         Text(
                           prodDetailProductsRecord.price!.toString(),
                           textAlign: TextAlign.end,
-                          style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          style: FlutterFlowTheme.of(context).bodyText1.override(
+                                fontFamily: 'Montserrat',
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                         ),
                       ],
                     ),
@@ -276,12 +248,9 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                       children: [
                         AutoSizeText(
                           prodDetailProductsRecord.description!,
-                          style: FlutterFlowTheme.of(context)
-                              .subtitle1
-                              .override(
+                          style: FlutterFlowTheme.of(context).subtitle1.override(
                                 fontFamily: 'Montserrat',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
+                                color: FlutterFlowTheme.of(context).primaryColor,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -292,8 +261,7 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
                     child: StreamBuilder<UsersRecord>(
-                      stream: UsersRecord.getDocument(
-                          prodDetailProductsRecord.vendor!),
+                      stream: UsersRecord.getDocument(prodDetailProductsRecord.vendor!),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
                         if (!snapshot.hasData) {
@@ -319,13 +287,10 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
                               child: Text(
                                 rowTimeUsersRecord.displayName!,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
+                                style: FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Montserrat',
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,
@@ -340,8 +305,7 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
                     child: StreamBuilder<UsersRecord>(
-                      stream: UsersRecord.getDocument(
-                          prodDetailProductsRecord.vendor!),
+                      stream: UsersRecord.getDocument(prodDetailProductsRecord.vendor!),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
                         if (!snapshot.hasData) {
@@ -368,9 +332,7 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                             width: double.infinity,
                             height: 40,
                             color: FlutterFlowTheme.of(context).secondaryColor,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .title3
-                                .override(
+                            textStyle: FlutterFlowTheme.of(context).title3.override(
                                   fontFamily: 'Montserrat',
                                   color: FlutterFlowTheme.of(context).black600,
                                   fontSize: 12,

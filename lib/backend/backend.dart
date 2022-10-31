@@ -1,5 +1,3 @@
-import 'package:built_value/serializer.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../flutter_flow/flutter_flow_util.dart';
@@ -508,10 +506,7 @@ Future<FFFirestorePage<FavoritesRecord>> queryFavoritesRecordPage({
       isStream: isStream,
     );
 
-Stream<List<T>> queryCollection<T>(Query collection, Serializer<T> serializer,
-    {Query Function(Query)? queryBuilder,
-    int limit = -1,
-    bool singleRecord = false}) {
+Stream<List<T>> queryCollection<T>(Query collection, Serializer<T> serializer, {Query Function(Query)? queryBuilder, int limit = -1, bool singleRecord = false}) {
   final builder = queryBuilder ?? (q) => q;
   var query = builder(collection);
   if (limit > 0 || singleRecord) {
@@ -531,11 +526,7 @@ Stream<List<T>> queryCollection<T>(Query collection, Serializer<T> serializer,
       .toList());
 }
 
-Future<List<T>> queryCollectionOnce<T>(
-    Query collection, Serializer<T> serializer,
-    {Query Function(Query)? queryBuilder,
-    int limit = -1,
-    bool singleRecord = false}) {
+Future<List<T>> queryCollectionOnce<T>(Query collection, Serializer<T> serializer, {Query Function(Query)? queryBuilder, int limit = -1, bool singleRecord = false}) {
   final builder = queryBuilder ?? (q) => q;
   var query = builder(collection);
   if (limit > 0 || singleRecord) {
@@ -554,18 +545,11 @@ Future<List<T>> queryCollectionOnce<T>(
 }
 
 extension QueryExtension on Query {
-  Query whereIn(String field, List? list) => (list?.isEmpty ?? true)
-      ? where(field, whereIn: null)
-      : where(field, whereIn: list);
+  Query whereIn(String field, List? list) => (list?.isEmpty ?? true) ? where(field, whereIn: null) : where(field, whereIn: list);
 
-  Query whereNotIn(String field, List? list) => (list?.isEmpty ?? true)
-      ? where(field, whereNotIn: null)
-      : where(field, whereNotIn: list);
+  Query whereNotIn(String field, List? list) => (list?.isEmpty ?? true) ? where(field, whereNotIn: null) : where(field, whereNotIn: list);
 
-  Query whereArrayContainsAny(String field, List? list) =>
-      (list?.isEmpty ?? true)
-          ? where(field, arrayContainsAny: null)
-          : where(field, arrayContainsAny: list);
+  Query whereArrayContainsAny(String field, List? list) => (list?.isEmpty ?? true) ? where(field, arrayContainsAny: null) : where(field, arrayContainsAny: list);
 }
 
 class FFFirestorePage<T> {

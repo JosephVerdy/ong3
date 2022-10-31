@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'index.dart';
 import 'serializers.dart';
 import 'package:built_value/built_value.dart';
 
@@ -21,24 +20,16 @@ abstract class OngsRecord implements Built<OngsRecord, OngsRecordBuilder> {
     ..name = ''
     ..types = ListBuilder();
 
-  static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('ongs');
+  static CollectionReference get collection => FirebaseFirestore.instance.collection('ongs');
 
-  static Stream<OngsRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<OngsRecord> getDocument(DocumentReference ref) => ref.snapshots().map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
-  static Future<OngsRecord> getDocumentOnce(DocumentReference ref) => ref
-      .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Future<OngsRecord> getDocumentOnce(DocumentReference ref) => ref.get().then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   OngsRecord._();
   factory OngsRecord([void Function(OngsRecordBuilder) updates]) = _$OngsRecord;
 
-  static OngsRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+  static OngsRecord getDocumentFromData(Map<String, dynamic> data, DocumentReference reference) => serializers.deserializeWith(serializer, {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
 Map<String, dynamic> createOngsRecordData({

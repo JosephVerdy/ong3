@@ -5,7 +5,6 @@ import '../flutter_flow/flutter_flow_toggle_icon.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class FavoritesWidget extends StatefulWidget {
   const FavoritesWidget({Key? key}) : super(key: key);
@@ -72,22 +71,19 @@ class _FavoritesWidgetState extends State<FavoritesWidget> {
                           ),
                         );
                       }
-                      List<ProductsRecord> listViewProductsRecordList =
-                          snapshot.data!;
+                      List<ProductsRecord> listViewProductsRecordList = snapshot.data!;
                       return ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount: listViewProductsRecordList.length,
                         itemBuilder: (context, listViewIndex) {
-                          final listViewProductsRecord =
-                              listViewProductsRecordList[listViewIndex];
+                          final listViewProductsRecord = listViewProductsRecordList[listViewIndex];
                           return Container(
                             width: 100,
                             height: 166,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
+                              color: FlutterFlowTheme.of(context).secondaryBackground,
                               boxShadow: [
                                 BoxShadow(
                                   blurRadius: 4,
@@ -108,8 +104,7 @@ class _FavoritesWidgetState extends State<FavoritesWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          3, 0, 0, 0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(3, 0, 0, 0),
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(2),
                                         child: Image.network(
@@ -125,50 +120,36 @@ class _FavoritesWidgetState extends State<FavoritesWidget> {
                                 Expanded(
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5, 0, 0, 0),
+                                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
                                             StreamBuilder<OngsRecord>(
-                                              stream: OngsRecord.getDocument(
-                                                  listViewProductsRecord.ong!),
+                                              stream: OngsRecord.getDocument(listViewProductsRecord.ong!),
                                               builder: (context, snapshot) {
                                                 // Customize what your widget looks like when it's loading.
                                                 if (!snapshot.hasData) {
                                                   return Center(
-                                                    child:
-                                                        LinearProgressIndicator(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryColor,
+                                                    child: LinearProgressIndicator(
+                                                      color: FlutterFlowTheme.of(context).primaryColor,
                                                     ),
                                                   );
                                                 }
-                                                final textOngsRecord =
-                                                    snapshot.data!;
+                                                final textOngsRecord = snapshot.data!;
                                                 return Text(
                                                   textOngsRecord.name!,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1,
+                                                  style: FlutterFlowTheme.of(context).bodyText1,
                                                 );
                                               },
                                             ),
                                             ToggleIcon(
                                               onPressed: () async {
-                                                setState(() =>
-                                                    FFAppState().teste =
-                                                        !FFAppState().teste);
+                                                setState(() => FFAppState().teste = !FFAppState().teste);
                                               },
                                               value: FFAppState().teste,
                                               onIcon: Icon(
@@ -187,67 +168,45 @@ class _FavoritesWidgetState extends State<FavoritesWidget> {
                                       ),
                                       Expanded(
                                         child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 3),
+                                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 3),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.end,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(5, 0, 0, 0),
+                                                padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
                                                 child: Text(
                                                   listViewProductsRecord.title!,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
+                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
                                                         fontFamily: 'Noto Sans',
                                                         fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w500,
+                                                        fontWeight: FontWeight.w500,
                                                       ),
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(5, 0, 0, 0),
+                                                padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
                                                 child: Text(
-                                                  listViewProductsRecord
-                                                      .description!,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
+                                                  listViewProductsRecord.description!,
+                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                        fontFamily: 'Montserrat',
                                                         fontSize: 12,
                                                       ),
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(5, 0, 0, 10),
+                                                padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 10),
                                                 child: Text(
-                                                  listViewProductsRecord.price!
-                                                      .toString(),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
+                                                  listViewProductsRecord.price!.toString(),
+                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                        fontFamily: 'Montserrat',
                                                         fontSize: 12,
                                                       ),
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(5, 0, 5, 0),
+                                                padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
                                                 child: FFButtonWidget(
                                                   onPressed: () {
                                                     print('Button pressed ...');
@@ -256,15 +215,9 @@ class _FavoritesWidgetState extends State<FavoritesWidget> {
                                                   options: FFButtonOptions(
                                                     width: double.infinity,
                                                     height: 30,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryColor,
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .subtitle2
-                                                        .override(
-                                                          fontFamily:
-                                                              'Montserrat',
+                                                    color: FlutterFlowTheme.of(context).primaryColor,
+                                                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                                                          fontFamily: 'Montserrat',
                                                           color: Colors.white,
                                                           fontSize: 12,
                                                         ),
@@ -272,9 +225,7 @@ class _FavoritesWidgetState extends State<FavoritesWidget> {
                                                       color: Colors.transparent,
                                                       width: 1,
                                                     ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            2),
+                                                    borderRadius: BorderRadius.circular(2),
                                                   ),
                                                 ),
                                               ),

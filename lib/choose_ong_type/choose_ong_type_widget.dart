@@ -1,9 +1,7 @@
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ChooseOngTypeWidget extends StatefulWidget {
   const ChooseOngTypeWidget({Key? key}) : super(key: key);
@@ -68,13 +66,11 @@ class _ChooseOngTypeWidgetState extends State<ChooseOngTypeWidget> {
                 List<OngTypesRecord> columnOngTypesRecordList = snapshot.data!;
                 return Column(
                   mainAxisSize: MainAxisSize.max,
-                  children: List.generate(columnOngTypesRecordList.length,
-                      (columnIndex) {
-                    final columnOngTypesRecord =
-                        columnOngTypesRecordList[columnIndex];
+                  children: List.generate(columnOngTypesRecordList.length, (columnIndex) {
+                    final columnOngTypesRecord = columnOngTypesRecordList[columnIndex];
                     return ListTile(
                       title: Text(
-                        'Lorem ipsum dolor...',
+                        columnOngTypesRecord.name ?? "no name",
                         style: FlutterFlowTheme.of(context).title3.override(
                               fontFamily: 'Montserrat',
                               fontSize: 14,

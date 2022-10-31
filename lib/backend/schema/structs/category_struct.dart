@@ -1,15 +1,10 @@
-import 'dart:async';
-
-import '../index.dart';
 import '../serializers.dart';
 import 'package:built_value/built_value.dart';
 
 part 'category_struct.g.dart';
 
-abstract class CategoryStruct
-    implements Built<CategoryStruct, CategoryStructBuilder> {
-  static Serializer<CategoryStruct> get serializer =>
-      _$categoryStructSerializer;
+abstract class CategoryStruct implements Built<CategoryStruct, CategoryStructBuilder> {
+  static Serializer<CategoryStruct> get serializer => _$categoryStructSerializer;
 
   String? get name;
 
@@ -21,8 +16,7 @@ abstract class CategoryStruct
     ..firestoreUtilData = FirestoreUtilData();
 
   CategoryStruct._();
-  factory CategoryStruct([void Function(CategoryStructBuilder) updates]) =
-      _$CategoryStruct;
+  factory CategoryStruct([void Function(CategoryStructBuilder) updates]) = _$CategoryStruct;
 }
 
 CategoryStruct createCategoryStruct({
@@ -47,12 +41,7 @@ CategoryStruct? updateCategoryStruct(
   CategoryStruct? category, {
   bool clearUnsetFields = true,
 }) =>
-    category != null
-        ? (category.toBuilder()
-              ..firestoreUtilData =
-                  FirestoreUtilData(clearUnsetFields: clearUnsetFields))
-            .build()
-        : null;
+    category != null ? (category.toBuilder()..firestoreUtilData = FirestoreUtilData(clearUnsetFields: clearUnsetFields)).build() : null;
 
 void addCategoryStructData(
   Map<String, dynamic> firestoreData,
@@ -87,12 +76,10 @@ Map<String, dynamic> getCategoryFirestoreData(
   if (category == null) {
     return {};
   }
-  final firestoreData =
-      serializers.toFirestore(CategoryStruct.serializer, category);
+  final firestoreData = serializers.toFirestore(CategoryStruct.serializer, category);
 
   // Add any Firestore field values
-  category.firestoreUtilData.fieldValues
-      .forEach((k, v) => firestoreData[k] = v);
+  category.firestoreUtilData.fieldValues.forEach((k, v) => firestoreData[k] = v);
 
   return forFieldValue ? mergeNestedFields(firestoreData) : firestoreData;
 }

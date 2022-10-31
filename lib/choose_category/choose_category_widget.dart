@@ -1,9 +1,9 @@
+import 'package:ong3/index.dart';
+
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ChooseCategoryWidget extends StatefulWidget {
   const ChooseCategoryWidget({Key? key}) : super(key: key);
@@ -65,32 +65,42 @@ class _ChooseCategoryWidgetState extends State<ChooseCategoryWidget> {
                     ),
                   );
                 }
-                List<CategoriesRecord> columnCategoriesRecordList =
-                    snapshot.data!;
-                return Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: List.generate(columnCategoriesRecordList.length,
-                      (columnIndex) {
-                    final columnCategoriesRecord =
-                        columnCategoriesRecordList[columnIndex];
-                    return ListTile(
-                      title: Text(
-                        'Lorem ipsum dolor...',
-                        style: FlutterFlowTheme.of(context).title3.override(
-                              fontFamily: 'Montserrat',
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
+                List<CategoriesRecord> columnCategoriesRecordList = snapshot.data!;
+                return SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: List.generate(columnCategoriesRecordList.length, (columnIndex) {
+                      final columnCategoriesRecord = columnCategoriesRecordList[columnIndex];
+                      return InkWell(
+                        onTap: () async {
+                          SubCategoryRecord selectedSubCategory = await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ChooseSubCategoryWidget(category: columnCategoriesRecord),
                             ),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Color(0xFF303030),
-                        size: 20,
-                      ),
-                      tileColor: Color(0xFFF5F5F5),
-                      dense: false,
-                    );
-                  }),
+                          );
+                          Navigator.pop(context, selectedSubCategory);
+                        },
+                        child: ListTile(
+                          title: Text(
+                            columnCategoriesRecord.name ?? "no name",
+                            style: FlutterFlowTheme.of(context).title3.override(
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                          ),
+                          trailing: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Color(0xFF303030),
+                            size: 20,
+                          ),
+                          tileColor: Color(0xFFF5F5F5),
+                          dense: false,
+                        ),
+                      );
+                    }),
+                  ),
                 );
               },
             ),

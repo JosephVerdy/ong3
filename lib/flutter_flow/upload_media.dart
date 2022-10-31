@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -8,7 +6,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mime_type/mime_type.dart';
 
 import '../auth/auth_util.dart';
-import 'flutter_flow_util.dart';
 
 const allowedFormats = {'image/png', 'image/jpeg', 'video/mp4', 'image/gif'};
 
@@ -35,25 +32,24 @@ Future<List<SelectedMedia>?> selectMediaWithSourceBottomSheet({
   Color textColor = const Color(0xFF111417),
   Color backgroundColor = const Color(0xFFF5F5F5),
 }) async {
-  final createUploadMediaListTile =
-      (String label, MediaSource mediaSource) => ListTile(
-            title: Text(
-              label,
-              textAlign: TextAlign.center,
-              style: GoogleFonts.getFont(
-                pickerFontFamily,
-                color: textColor,
-                fontWeight: FontWeight.w600,
-                fontSize: 20,
-              ),
-            ),
-            tileColor: backgroundColor,
-            dense: false,
-            onTap: () => Navigator.pop(
-              context,
-              mediaSource,
-            ),
-          );
+  final createUploadMediaListTile = (String label, MediaSource mediaSource) => ListTile(
+        title: Text(
+          label,
+          textAlign: TextAlign.center,
+          style: GoogleFonts.getFont(
+            pickerFontFamily,
+            color: textColor,
+            fontWeight: FontWeight.w600,
+            fontSize: 20,
+          ),
+        ),
+        tileColor: backgroundColor,
+        dense: false,
+        onTap: () => Navigator.pop(
+          context,
+          mediaSource,
+        ),
+      );
   final mediaSource = await showModalBottomSheet<MediaSource>(
       context: context,
       backgroundColor: backgroundColor,
@@ -117,8 +113,7 @@ Future<List<SelectedMedia>?> selectMediaWithSourceBottomSheet({
     maxWidth: maxWidth,
     maxHeight: maxHeight,
     imageQuality: imageQuality,
-    isVideo: mediaSource == MediaSource.videoGallery ||
-        (mediaSource == MediaSource.camera && allowVideo && !allowPhoto),
+    isVideo: mediaSource == MediaSource.videoGallery || (mediaSource == MediaSource.camera && allowVideo && !allowPhoto),
     mediaSource: mediaSource,
   );
 }
@@ -140,7 +135,7 @@ Future<List<SelectedMedia>?> selectMedia({
       imageQuality: imageQuality,
     );
     final pickedMedia = await pickedMediaFuture;
-    if (pickedMedia == null || pickedMedia.isEmpty) {
+    if (pickedMedia.isEmpty) {
       return null;
     }
     return Future.wait(pickedMedia.asMap().entries.map((e) async {
@@ -152,9 +147,7 @@ Future<List<SelectedMedia>?> selectMedia({
     }));
   }
 
-  final source = mediaSource == MediaSource.camera
-      ? ImageSource.camera
-      : ImageSource.gallery;
+  final source = mediaSource == MediaSource.camera ? ImageSource.camera : ImageSource.gallery;
   final pickedMediaFuture = isVideo
       ? picker.pickVideo(source: source)
       : picker.pickImage(
@@ -218,8 +211,7 @@ String signatureStoragePath(String uid) {
   return 'users/$uid/uploads/signature_$timestamp.png';
 }
 
-void showUploadMessage(BuildContext context, String message,
-    {bool showLoading = false}) {
+void showUploadMessage(BuildContext context, String message, {bool showLoading = false}) {
   ScaffoldMessenger.of(context)
     ..hideCurrentSnackBar()
     ..showSnackBar(

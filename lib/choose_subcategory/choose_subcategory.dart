@@ -1,19 +1,18 @@
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class ChooseCategoryCopyWidget extends StatefulWidget {
-  const ChooseCategoryCopyWidget({Key? key}) : super(key: key);
+class ChooseSubCategoryWidget extends StatefulWidget {
+  const ChooseSubCategoryWidget({Key? key, required this.category}) : super(key: key);
+
+  final CategoriesRecord category;
 
   @override
-  _ChooseCategoryCopyWidgetState createState() =>
-      _ChooseCategoryCopyWidgetState();
+  _ChooseSubCategoryWidgetState createState() => _ChooseSubCategoryWidgetState();
 }
 
-class _ChooseCategoryCopyWidgetState extends State<ChooseCategoryCopyWidget> {
+class _ChooseSubCategoryWidgetState extends State<ChooseSubCategoryWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -55,8 +54,8 @@ class _ChooseCategoryCopyWidgetState extends State<ChooseCategoryCopyWidget> {
           onTap: () => FocusScope.of(context).unfocus(),
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-            child: StreamBuilder<List<CategoriesRecord>>(
-              stream: queryCategoriesRecord(),
+            child: StreamBuilder<List<SubCategoryRecord>>(
+              stream: querySubCategoryRecord(parent: widget.category.reference),
               builder: (context, snapshot) {
                 // Customize what your widget looks like when it's loading.
                 if (!snapshot.hasData) {
@@ -66,30 +65,32 @@ class _ChooseCategoryCopyWidgetState extends State<ChooseCategoryCopyWidget> {
                     ),
                   );
                 }
-                List<CategoriesRecord> columnCategoriesRecordList =
-                    snapshot.data!;
+                List<SubCategoryRecord> columnCategoriesRecordList = snapshot.data!;
                 return Column(
                   mainAxisSize: MainAxisSize.max,
-                  children: List.generate(columnCategoriesRecordList.length,
-                      (columnIndex) {
-                    final columnCategoriesRecord =
-                        columnCategoriesRecordList[columnIndex];
-                    return ListTile(
-                      title: Text(
-                        'Lorem ipsum dolor...',
-                        style: FlutterFlowTheme.of(context).title3.override(
-                              fontFamily: 'Montserrat',
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                            ),
+                  children: List.generate(columnCategoriesRecordList.length, (columnIndex) {
+                    final columnSubCategoryRecord = columnCategoriesRecordList[columnIndex];
+                    return InkWell(
+                      onTap: () async {
+                        Navigator.pop(context, columnSubCategoryRecord);
+                      },
+                      child: ListTile(
+                        title: Text(
+                          columnSubCategoryRecord.name ?? "no name",
+                          style: FlutterFlowTheme.of(context).title3.override(
+                                fontFamily: 'Montserrat',
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                              ),
+                        ),
+                        trailing: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Color(0xFF303030),
+                          size: 20,
+                        ),
+                        tileColor: Color(0xFFF5F5F5),
+                        dense: false,
                       ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Color(0xFF303030),
-                        size: 20,
-                      ),
-                      tileColor: Color(0xFFF5F5F5),
-                      dense: false,
                     );
                   }),
                 );

@@ -5,7 +5,6 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../forgotpassword/forgotpassword_widget.dart';
 import '../main.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class FirstpageWidget extends StatefulWidget {
   const FirstpageWidget({Key? key}) : super(key: key);
@@ -89,14 +88,12 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                         TabBar(
                           isScrollable: true,
                           labelColor: FlutterFlowTheme.of(context).primaryColor,
-                          labelStyle:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                          indicatorColor:
-                              FlutterFlowTheme.of(context).secondaryColor,
+                          labelStyle: FlutterFlowTheme.of(context).bodyText1.override(
+                                fontFamily: 'Montserrat',
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                              ),
+                          indicatorColor: FlutterFlowTheme.of(context).secondaryColor,
                           tabs: [
                             Tab(
                               text: 'Sign up',
@@ -113,203 +110,162 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 5, 0, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                                     child: TextFormField(
                                       controller: tFEmailController,
                                       autofocus: true,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         hintText: 'Email',
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .bodyText2,
+                                        hintStyle: FlutterFlowTheme.of(context).bodyText2,
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
+                                            color: FlutterFlowTheme.of(context).primaryText,
                                             width: 1,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
+                                            color: FlutterFlowTheme.of(context).primaryText,
                                             width: 1,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         errorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 1,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         focusedErrorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 1,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         filled: true,
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
+                                        fillColor: FlutterFlowTheme.of(context).primaryBackground,
                                       ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1,
+                                      style: FlutterFlowTheme.of(context).bodyText1,
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 5, 0, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                                     child: TextFormField(
                                       controller: tFPassController,
                                       autofocus: true,
                                       obscureText: !tFPassVisibility,
                                       decoration: InputDecoration(
                                         hintText: 'Password',
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .bodyText2,
+                                        hintStyle: FlutterFlowTheme.of(context).bodyText2,
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
+                                            color: FlutterFlowTheme.of(context).primaryText,
                                             width: 1,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
+                                            color: FlutterFlowTheme.of(context).primaryText,
                                             width: 1,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         errorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 1,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         focusedErrorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 1,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         filled: true,
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
+                                        fillColor: FlutterFlowTheme.of(context).primaryBackground,
                                         suffixIcon: InkWell(
                                           onTap: () => setState(
-                                            () => tFPassVisibility =
-                                                !tFPassVisibility,
+                                            () => tFPassVisibility = !tFPassVisibility,
                                           ),
-                                          focusNode:
-                                              FocusNode(skipTraversal: true),
+                                          focusNode: FocusNode(skipTraversal: true),
                                           child: Icon(
-                                            tFPassVisibility
-                                                ? Icons.visibility_outlined
-                                                : Icons.visibility_off_outlined,
+                                            tFPassVisibility ? Icons.visibility_outlined : Icons.visibility_off_outlined,
                                             color: Color(0xFF757575),
                                             size: 22,
                                           ),
                                         ),
                                       ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1,
+                                      style: FlutterFlowTheme.of(context).bodyText1,
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 5, 0, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                                     child: TextFormField(
                                       controller: tFconfimpassController,
                                       autofocus: true,
                                       obscureText: !tFconfimpassVisibility,
                                       decoration: InputDecoration(
                                         hintText: 'Confirm password',
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .bodyText2,
+                                        hintStyle: FlutterFlowTheme.of(context).bodyText2,
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
+                                            color: FlutterFlowTheme.of(context).primaryText,
                                             width: 1,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
+                                            color: FlutterFlowTheme.of(context).primaryText,
                                             width: 1,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         errorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 1,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         focusedErrorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 1,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         filled: true,
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
+                                        fillColor: FlutterFlowTheme.of(context).primaryBackground,
                                         suffixIcon: InkWell(
                                           onTap: () => setState(
-                                            () => tFconfimpassVisibility =
-                                                !tFconfimpassVisibility,
+                                            () => tFconfimpassVisibility = !tFconfimpassVisibility,
                                           ),
-                                          focusNode:
-                                              FocusNode(skipTraversal: true),
+                                          focusNode: FocusNode(skipTraversal: true),
                                           child: Icon(
-                                            tFconfimpassVisibility
-                                                ? Icons.visibility_outlined
-                                                : Icons.visibility_off_outlined,
+                                            tFconfimpassVisibility ? Icons.visibility_outlined : Icons.visibility_off_outlined,
                                             color: Color(0xFF757575),
                                             size: 22,
                                           ),
                                         ),
                                       ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1,
+                                      style: FlutterFlowTheme.of(context).bodyText1,
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 20, 0, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        if (tFPassController?.text !=
-                                            tFconfimpassController?.text) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
+                                        if (tFPassController?.text != tFconfimpassController?.text) {
+                                          ScaffoldMessenger.of(context).showSnackBar(
                                             SnackBar(
                                               content: Text(
                                                 'Passwords don\'t match!',
@@ -319,8 +275,7 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                           return;
                                         }
 
-                                        final user =
-                                            await createAccountWithEmail(
+                                        final user = await createAccountWithEmail(
                                           context,
                                           tFEmailController!.text,
                                           tFPassController!.text,
@@ -332,8 +287,7 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) =>
-                                                NavBarPage(initialPage: 'Home'),
+                                            builder: (context) => NavBarPage(initialPage: 'Home'),
                                           ),
                                         );
                                       },
@@ -341,11 +295,8 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                       options: FFButtonOptions(
                                         width: double.infinity,
                                         height: 40,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .subtitle2
-                                            .override(
+                                        color: FlutterFlowTheme.of(context).primaryColor,
+                                        textStyle: FlutterFlowTheme.of(context).subtitle2.override(
                                               fontFamily: 'Montserrat',
                                               color: Colors.white,
                                               fontSize: 12,
@@ -359,22 +310,19 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 30, 0, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                                     child: InkWell(
                                       onTap: () async {
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) =>
-                                                NavBarPage(initialPage: 'Home'),
+                                            builder: (context) => NavBarPage(initialPage: 'Home'),
                                           ),
                                         );
                                       },
                                       child: Text(
                                         'or do it later',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
+                                        style: FlutterFlowTheme.of(context).bodyText1,
                                       ),
                                     ),
                                   ),
@@ -384,137 +332,111 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 5, 0, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                                     child: TextFormField(
                                       controller: tFemailloginController,
                                       autofocus: true,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         hintText: 'Email',
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .bodyText2,
+                                        hintStyle: FlutterFlowTheme.of(context).bodyText2,
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
+                                            color: FlutterFlowTheme.of(context).primaryColor,
                                             width: 2,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
+                                            color: FlutterFlowTheme.of(context).primaryColor,
                                             width: 2,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         errorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 2,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         focusedErrorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 2,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                       ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1,
+                                      style: FlutterFlowTheme.of(context).bodyText1,
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 5, 0, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                                     child: TextFormField(
                                       controller: tFpassloginController,
                                       autofocus: true,
                                       obscureText: !tFpassloginVisibility,
                                       decoration: InputDecoration(
                                         hintText: 'Password',
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .bodyText2,
+                                        hintStyle: FlutterFlowTheme.of(context).bodyText2,
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
+                                            color: FlutterFlowTheme.of(context).primaryColor,
                                             width: 2,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
+                                            color: FlutterFlowTheme.of(context).primaryColor,
                                             width: 2,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         errorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 2,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         focusedErrorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 2,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                         ),
                                         suffixIcon: InkWell(
                                           onTap: () => setState(
-                                            () => tFpassloginVisibility =
-                                                !tFpassloginVisibility,
+                                            () => tFpassloginVisibility = !tFpassloginVisibility,
                                           ),
-                                          focusNode:
-                                              FocusNode(skipTraversal: true),
+                                          focusNode: FocusNode(skipTraversal: true),
                                           child: Icon(
-                                            tFpassloginVisibility
-                                                ? Icons.visibility_outlined
-                                                : Icons.visibility_off_outlined,
+                                            tFpassloginVisibility ? Icons.visibility_outlined : Icons.visibility_off_outlined,
                                             color: Color(0xFF757575),
                                             size: 22,
                                           ),
                                         ),
                                       ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1,
+                                      style: FlutterFlowTheme.of(context).bodyText1,
                                     ),
                                   ),
                                   if (FFAppState().incorrectpassword)
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 10, 0, 0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                       child: Text(
                                         'Incorrect password',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
+                                        style: FlutterFlowTheme.of(context).bodyText1,
                                       ),
                                     ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 20, 0, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        setState(() => FFAppState()
-                                            .incorrectpassword = true);
+                                        setState(() => FFAppState().incorrectpassword = true);
 
                                         final user = await signInWithEmail(
                                           context,
@@ -528,8 +450,7 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) =>
-                                                NavBarPage(initialPage: 'Home'),
+                                            builder: (context) => NavBarPage(initialPage: 'Home'),
                                           ),
                                         );
                                       },
@@ -537,11 +458,8 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                       options: FFButtonOptions(
                                         width: 130,
                                         height: 40,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .subtitle2
-                                            .override(
+                                        color: FlutterFlowTheme.of(context).primaryColor,
+                                        textStyle: FlutterFlowTheme.of(context).subtitle2.override(
                                               fontFamily: 'Montserrat',
                                               color: Colors.white,
                                               fontSize: 12,
@@ -555,22 +473,19 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 10, 0, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                     child: InkWell(
                                       onTap: () async {
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) =>
-                                                ForgotpasswordWidget(),
+                                            builder: (context) => ForgotpasswordWidget(),
                                           ),
                                         );
                                       },
                                       child: Text(
                                         'Forgot your password',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
+                                        style: FlutterFlowTheme.of(context).bodyText1,
                                       ),
                                     ),
                                   ),

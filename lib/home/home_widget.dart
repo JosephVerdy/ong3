@@ -7,7 +7,6 @@ import '../prod_detail/prod_detail_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:text_search/text_search.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -55,8 +54,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           color: Color(0xFFE6E6E6),
                           borderRadius: BorderRadius.circular(2),
                           border: Border.all(
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
+                            color: FlutterFlowTheme.of(context).primaryBackground,
                             width: 2,
                           ),
                         ),
@@ -66,12 +64,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
                                 child: Icon(
                                   Icons.search_rounded,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
+                                  color: FlutterFlowTheme.of(context).primaryColor,
                                   size: 24,
                                 ),
                               ),
@@ -83,40 +79,29 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       return const Iterable<String>.empty();
                                     }
                                     return ['Option 1'].where((option) {
-                                      final lowercaseOption =
-                                          option.toLowerCase();
-                                      return lowercaseOption.contains(
-                                          textEditingValue.text.toLowerCase());
+                                      final lowercaseOption = option.toLowerCase();
+                                      return lowercaseOption.contains(textEditingValue.text.toLowerCase());
                                     });
                                   },
-                                  optionsViewBuilder:
-                                      (context, onSelected, options) {
+                                  optionsViewBuilder: (context, onSelected, options) {
                                     return AutocompleteOptionsList(
                                       textFieldKey: tFSearchKey,
                                       textController: tFSearchController!,
                                       options: options.toList(),
                                       onSelected: onSelected,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
+                                      textStyle: FlutterFlowTheme.of(context).bodyText1.override(
                                             fontFamily: 'Montserrat',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
+                                            color: FlutterFlowTheme.of(context).primaryColor,
                                           ),
                                       textHighlightStyle: TextStyle(),
                                       elevation: 4,
-                                      optionBackgroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                      optionHighlightColor:
-                                          FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                      optionBackgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+                                      optionHighlightColor: FlutterFlowTheme.of(context).secondaryBackground,
                                       maxHeight: 200,
                                     );
                                   },
                                   onSelected: (String selection) {
-                                    setState(() =>
-                                        tFSearchSelectedOption = selection);
+                                    setState(() => tFSearchSelectedOption = selection);
                                     FocusScope.of(context).unfocus();
                                   },
                                   fieldViewBuilder: (
@@ -137,38 +122,23 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         () async {
                                           await queryProductsRecordOnce()
                                               .then(
-                                                (records) => simpleSearchResults =
-                                                    TextSearch(
+                                                (records) => simpleSearchResults = TextSearch(
                                                   records
                                                       .map(
-                                                        (record) =>
-                                                            TextSearchItem(
-                                                                record, [
-                                                          record.title!,
-                                                          record.description!
-                                                        ]),
+                                                        (record) => TextSearchItem(record, [record.title!, record.description!]),
                                                       )
                                                       .toList(),
-                                                )
-                                                        .search(
-                                                            simpleSearchResults
-                                                                .length
-                                                                .toString())
-                                                        .map((r) => r.object)
-                                                        .toList(),
+                                                ).search(simpleSearchResults.length.toString()).map((r) => r.object).toList(),
                                               )
-                                              .onError((_, __) =>
-                                                  simpleSearchResults = [])
-                                              .whenComplete(
-                                                  () => setState(() {}));
+                                              .onError((_, __) => simpleSearchResults = [])
+                                              .whenComplete(() => setState(() {}));
                                         },
                                       ),
                                       autofocus: true,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         hintText: 'Search',
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .bodyText2,
+                                        hintStyle: FlutterFlowTheme.of(context).bodyText2,
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
@@ -199,8 +169,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             topRight: Radius.circular(4.0),
                                           ),
                                         ),
-                                        focusedErrorBorder:
-                                            UnderlineInputBorder(
+                                        focusedErrorBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 1,
@@ -211,12 +180,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           ),
                                         ),
                                       ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
+                                      style: FlutterFlowTheme.of(context).bodyText1.override(
                                             fontFamily: 'Montserrat',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
+                                            color: FlutterFlowTheme.of(context).primaryColor,
                                           ),
                                     );
                                   },
@@ -227,8 +193,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   alignment: AlignmentDirectional(0.95, 0),
                                   child: Icon(
                                     Icons.tune_rounded,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
+                                    color: FlutterFlowTheme.of(context).primaryColor,
                                     size: 24,
                                   ),
                                 ),
@@ -272,11 +237,7 @@ class _HomeWidgetState extends State<HomeWidget> {
               ),
               StreamBuilder<List<ProductsRecord>>(
                 stream: queryProductsRecord(
-                  queryBuilder: (productsRecord) => productsRecord.where(
-                      'title',
-                      isEqualTo: tFSearchController!.text != ''
-                          ? tFSearchController!.text
-                          : null),
+                  queryBuilder: (productsRecord) => productsRecord.where('title', isEqualTo: tFSearchController!.text != '' ? tFSearchController!.text : null),
                 ),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
@@ -297,10 +258,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                     runAlignment: WrapAlignment.start,
                     verticalDirection: VerticalDirection.down,
                     clipBehavior: Clip.none,
-                    children: List.generate(wrapProductsRecordList.length,
-                        (wrapIndex) {
-                      final wrapProductsRecord =
-                          wrapProductsRecordList[wrapIndex];
+                    children: List.generate(wrapProductsRecordList.length, (wrapIndex) {
+                      final wrapProductsRecord = wrapProductsRecordList[wrapIndex];
                       return Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
                         child: InkWell(
@@ -309,8 +268,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => ProdDetailWidget(
-                                  productreffromhomepage:
-                                      wrapProductsRecord.reference,
+                                  productreffromhomepage: wrapProductsRecord.reference,
                                 ),
                               ),
                             );
@@ -331,8 +289,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               shape: BoxShape.rectangle,
                             ),
                             child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+                              padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -341,14 +298,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   Stack(
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 5),
+                                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                                         child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(2),
+                                          borderRadius: BorderRadius.circular(2),
                                           child: CachedNetworkImage(
-                                            imageUrl:
-                                                wrapProductsRecord.thumbnail!,
+                                            imageUrl: wrapProductsRecord.thumbnail!,
                                             width: double.infinity,
                                             height: 160,
                                             fit: BoxFit.cover,
@@ -359,8 +313,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         alignment: AlignmentDirectional(1, 1),
                                         child: ToggleIcon(
                                           onPressed: () async {
-                                            setState(() => FFAppState().teste =
-                                                !FFAppState().teste);
+                                            setState(() => FFAppState().teste = !FFAppState().teste);
                                           },
                                           value: FFAppState().teste,
                                           onIcon: Icon(
@@ -378,28 +331,22 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     ],
                                   ),
                                   StreamBuilder<OngsRecord>(
-                                    stream: OngsRecord.getDocument(
-                                        wrapProductsRecord.ong!),
+                                    stream: OngsRecord.getDocument(wrapProductsRecord.ong!),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
                                       if (!snapshot.hasData) {
                                         return Center(
                                           child: LinearProgressIndicator(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
+                                            color: FlutterFlowTheme.of(context).primaryColor,
                                           ),
                                         );
                                       }
                                       final textOngsRecord = snapshot.data!;
                                       return Text(
                                         textOngsRecord.name!,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText2
-                                            .override(
+                                        style: FlutterFlowTheme.of(context).bodyText2.override(
                                               fontFamily: 'Montserrat',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryColor,
+                                              color: FlutterFlowTheme.of(context).primaryColor,
                                               fontSize: 14,
                                               fontWeight: FontWeight.normal,
                                             ),
@@ -408,9 +355,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   ),
                                   Text(
                                     wrapProductsRecord.title!,
-                                    style: FlutterFlowTheme.of(context)
-                                        .subtitle1
-                                        .override(
+                                    style: FlutterFlowTheme.of(context).subtitle1.override(
                                           fontFamily: 'Montserrat',
                                           color: Color(0xFF101213),
                                           fontSize: 16,
@@ -418,13 +363,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 2, 0, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
                                     child: Text(
                                       wrapProductsRecord.price!.toString(),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText2
-                                          .override(
+                                      style: FlutterFlowTheme.of(context).bodyText2.override(
                                             fontFamily: 'Montserrat',
                                             color: Color(0xFF57636C),
                                             fontSize: 12,

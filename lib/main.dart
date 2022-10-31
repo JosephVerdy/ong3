@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -8,7 +7,6 @@ import 'auth/auth_util.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'index.dart';
 
@@ -26,8 +24,7 @@ class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
 
-  static _MyAppState of(BuildContext context) =>
-      context.findAncestorStateOfType<_MyAppState>()!;
+  static _MyAppState of(BuildContext context) => context.findAncestorStateOfType<_MyAppState>()!;
 }
 
 class _MyAppState extends State<MyApp> {
@@ -43,8 +40,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    userStream = ong3FirebaseUserStream()
-      ..listen((user) => initialUser ?? setState(() => initialUser = user));
+    userStream = ong3FirebaseUserStream()..listen((user) => initialUser ?? setState(() => initialUser = user));
     jwtTokenStream.listen((_) {});
     Future.delayed(
       Duration(seconds: 1),
@@ -59,8 +55,7 @@ class _MyAppState extends State<MyApp> {
     super.dispose();
   }
 
-  void setLocale(String language) =>
-      setState(() => _locale = createLocale(language));
+  void setLocale(String language) => setState(() => _locale = createLocale(language));
   void setThemeMode(ThemeMode mode) => setState(() {
         _themeMode = mode;
       });
@@ -152,18 +147,14 @@ class _NavBarPageState extends State<NavBarPage> {
               children: [
                 Icon(
                   FFIcons.kuser,
-                  color: currentIndex == 0
-                      ? Colors.black
-                      : FlutterFlowTheme.of(context).tertiaryColor,
+                  color: currentIndex == 0 ? Colors.black : FlutterFlowTheme.of(context).tertiaryColor,
                   size: 24,
                 ),
                 Text(
                   'Profile',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: currentIndex == 0
-                        ? Colors.black
-                        : FlutterFlowTheme.of(context).tertiaryColor,
+                    color: currentIndex == 0 ? Colors.black : FlutterFlowTheme.of(context).tertiaryColor,
                     fontSize: 11.0,
                   ),
                 ),
@@ -176,18 +167,14 @@ class _NavBarPageState extends State<NavBarPage> {
               children: [
                 Icon(
                   FFIcons.khome,
-                  color: currentIndex == 1
-                      ? Colors.black
-                      : FlutterFlowTheme.of(context).tertiaryColor,
+                  color: currentIndex == 1 ? Colors.black : FlutterFlowTheme.of(context).tertiaryColor,
                   size: 24,
                 ),
                 Text(
                   'Home',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: currentIndex == 1
-                        ? Colors.black
-                        : FlutterFlowTheme.of(context).tertiaryColor,
+                    color: currentIndex == 1 ? Colors.black : FlutterFlowTheme.of(context).tertiaryColor,
                     fontSize: 11.0,
                   ),
                 ),
@@ -200,18 +187,14 @@ class _NavBarPageState extends State<NavBarPage> {
               children: [
                 Icon(
                   Icons.add_circle,
-                  color: currentIndex == 2
-                      ? Colors.black
-                      : FlutterFlowTheme.of(context).tertiaryColor,
+                  color: currentIndex == 2 ? Colors.black : FlutterFlowTheme.of(context).tertiaryColor,
                   size: 24,
                 ),
                 Text(
                   'Add product',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: currentIndex == 2
-                        ? Colors.black
-                        : FlutterFlowTheme.of(context).tertiaryColor,
+                    color: currentIndex == 2 ? Colors.black : FlutterFlowTheme.of(context).tertiaryColor,
                     fontSize: 11.0,
                   ),
                 ),
@@ -224,18 +207,14 @@ class _NavBarPageState extends State<NavBarPage> {
               children: [
                 Icon(
                   FFIcons.kchat,
-                  color: currentIndex == 3
-                      ? Colors.black
-                      : FlutterFlowTheme.of(context).tertiaryColor,
+                  color: currentIndex == 3 ? Colors.black : FlutterFlowTheme.of(context).tertiaryColor,
                   size: 20,
                 ),
                 Text(
                   'Chat',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: currentIndex == 3
-                        ? Colors.black
-                        : FlutterFlowTheme.of(context).tertiaryColor,
+                    color: currentIndex == 3 ? Colors.black : FlutterFlowTheme.of(context).tertiaryColor,
                     fontSize: 11.0,
                   ),
                 ),
@@ -248,18 +227,14 @@ class _NavBarPageState extends State<NavBarPage> {
               children: [
                 Icon(
                   Icons.favorite,
-                  color: currentIndex == 4
-                      ? Colors.black
-                      : FlutterFlowTheme.of(context).tertiaryColor,
+                  color: currentIndex == 4 ? Colors.black : FlutterFlowTheme.of(context).tertiaryColor,
                   size: 24,
                 ),
                 Text(
                   'Favorites',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: currentIndex == 4
-                        ? Colors.black
-                        : FlutterFlowTheme.of(context).tertiaryColor,
+                    color: currentIndex == 4 ? Colors.black : FlutterFlowTheme.of(context).tertiaryColor,
                     fontSize: 11.0,
                   ),
                 ),

@@ -3,10 +3,8 @@ import 'dart:async';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 
 import '../backend/backend.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'firebase_user_provider.dart';
 
@@ -53,16 +51,13 @@ Future deleteUser(BuildContext context) async {
     if (e.code == 'requires-recent-login') {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text(
-                'Too long since most recent sign in. Sign in again before deleting your account.')),
+        SnackBar(content: Text('Too long since most recent sign in. Sign in again before deleting your account.')),
       );
     }
   }
 }
 
-Future resetPassword(
-    {required String email, required BuildContext context}) async {
+Future resetPassword({required String email, required BuildContext context}) async {
   try {
     await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
   } on FirebaseAuthException catch (e) {
@@ -77,22 +72,17 @@ Future resetPassword(
   );
 }
 
-Future sendEmailVerification() async =>
-    currentUser?.user?.sendEmailVerification();
+Future sendEmailVerification() async => currentUser?.user?.sendEmailVerification();
 
-String get currentUserEmail =>
-    currentUserDocument?.email ?? currentUser?.user?.email ?? '';
+String get currentUserEmail => currentUserDocument?.email ?? currentUser?.user?.email ?? '';
 
 String get currentUserUid => currentUser?.user?.uid ?? '';
 
-String get currentUserDisplayName =>
-    currentUserDocument?.displayName ?? currentUser?.user?.displayName ?? '';
+String get currentUserDisplayName => currentUserDocument?.displayName ?? currentUser?.user?.displayName ?? '';
 
-String get currentUserPhoto =>
-    currentUserDocument?.photoUrl ?? currentUser?.user?.photoURL ?? '';
+String get currentUserPhoto => currentUserDocument?.photoUrl ?? currentUser?.user?.photoURL ?? '';
 
-String get currentPhoneNumber =>
-    currentUserDocument?.phoneNumber ?? currentUser?.user?.phoneNumber ?? '';
+String get currentPhoneNumber => currentUserDocument?.phoneNumber ?? currentUser?.user?.phoneNumber ?? '';
 
 String get currentJwtToken => _currentJwtToken ?? '';
 
@@ -100,9 +90,7 @@ bool get currentUserEmailVerified {
   // Reloads the user when checking in order to get the most up to date
   // email verified status.
   if (currentUser?.user != null && !currentUser!.user!.emailVerified) {
-    currentUser!.user!
-        .reload()
-        .then((_) => currentUser!.user = FirebaseAuth.instance.currentUser);
+    currentUser!.user!.reload().then((_) => currentUser!.user = FirebaseAuth.instance.currentUser);
   }
   return currentUser?.user?.emailVerified ?? false;
 }
@@ -110,10 +98,7 @@ bool get currentUserEmailVerified {
 /// Create a Stream that listens to the current user's JWT Token, since Firebase
 /// generates a new token every hour.
 String? _currentJwtToken;
-final jwtTokenStream = FirebaseAuth.instance
-    .idTokenChanges()
-    .map((user) async => _currentJwtToken = await user?.getIdToken())
-    .asBroadcastStream();
+final jwtTokenStream = FirebaseAuth.instance.idTokenChanges().map((user) async => _currentJwtToken = await user?.getIdToken()).asBroadcastStream();
 
 // Set when using phone verification (after phone number is provided).
 String? _phoneAuthVerificationCode;
@@ -126,8 +111,7 @@ Future beginPhoneAuth({
   required VoidCallback onCodeSent,
 }) async {
   if (kIsWeb) {
-    _webPhoneAuthConfirmationResult =
-        await FirebaseAuth.instance.signInWithPhoneNumber(phoneNumber);
+    _webPhoneAuthConfirmationResult = await FirebaseAuth.instance.signInWithPhoneNumber(phoneNumber);
     onCodeSent();
     return;
   }
@@ -178,8 +162,7 @@ Future verifySmsCode({
       'PHONE',
     );
   } else {
-    final authCredential = PhoneAuthProvider.credential(
-        verificationId: _phoneAuthVerificationCode!, smsCode: smsCode);
+    final authCredential = PhoneAuthProvider.credential(verificationId: _phoneAuthVerificationCode!, smsCode: smsCode);
     return signInOrCreateAccount(
       context,
       () => FirebaseAuth.instance.signInWithCredential(authCredential),
@@ -188,19 +171,14 @@ Future verifySmsCode({
   }
 }
 
-DocumentReference? get currentUserReference => currentUser?.user != null
-    ? UsersRecord.collection.doc(currentUser!.user!.uid)
-    : null;
+DocumentReference? get currentUserReference => currentUser?.user != null ? UsersRecord.collection.doc(currentUser!.user!.uid) : null;
 
 UsersRecord? currentUserDocument;
 final authenticatedUserStream = FirebaseAuth.instance
     .authStateChanges()
     .map<String>((user) => user?.uid ?? '')
     .switchMap(
-      (uid) => uid.isEmpty
-          ? Stream.value(null)
-          : UsersRecord.getDocument(UsersRecord.collection.doc(uid))
-              .handleError((_) {}),
+      (uid) => uid.isEmpty ? Stream.value(null) : UsersRecord.getDocument(UsersRecord.collection.doc(uid)).handleError((_) {}),
     )
     .map((user) => currentUserDocument = user)
     .asBroadcastStream();

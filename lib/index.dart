@@ -12,5 +12,4 @@ export 'checkout_cart/checkout_cart_widget.dart' show CheckoutCartWidget;
 export 'choose_ong_type/choose_ong_type_widget.dart' show ChooseOngTypeWidget;
 export 'choose_ong/choose_ong_widget.dart' show ChooseOngWidget;
 export 'choose_category/choose_category_widget.dart' show ChooseCategoryWidget;
-export 'choose_category_copy/choose_category_copy_widget.dart'
-    show ChooseCategoryCopyWidget;
+export 'choose_subcategory/choose_subcategory.dart' show ChooseSubCategoryWidget;

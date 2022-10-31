@@ -1,9 +1,6 @@
-import '../auth/auth_util.dart';
-import '../backend/backend.dart';
 import '../chatpage/chatpage_widget.dart';
 import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -37,9 +34,7 @@ class _AllchatsWidgetState extends State<AllchatsWidget> {
           padding: EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
           child: StreamBuilder<List<ChatsRecord>>(
             stream: queryChatsRecord(
-              queryBuilder: (chatsRecord) => chatsRecord
-                  .where('users', arrayContains: currentUserReference)
-                  .orderBy('last_message_time', descending: true),
+              queryBuilder: (chatsRecord) => chatsRecord.where('users', arrayContains: currentUserReference).orderBy('last_message_time', descending: true),
             ),
             builder: (context, snapshot) {
               // Customize what your widget looks like when it's loading.
@@ -56,30 +51,24 @@ class _AllchatsWidgetState extends State<AllchatsWidget> {
                 scrollDirection: Axis.vertical,
                 itemCount: listViewChatsRecordList.length,
                 itemBuilder: (context, listViewIndex) {
-                  final listViewChatsRecord =
-                      listViewChatsRecordList[listViewIndex];
+                  final listViewChatsRecord = listViewChatsRecordList[listViewIndex];
                   return StreamBuilder<FFChatInfo>(
-                    stream: FFChatManager.instance
-                        .getChatInfo(chatRecord: listViewChatsRecord),
+                    stream: FFChatManager.instance.getChatInfo(chatRecord: listViewChatsRecord),
                     builder: (context, snapshot) {
-                      final chatInfo =
-                          snapshot.data ?? FFChatInfo(listViewChatsRecord);
+                      final chatInfo = snapshot.data ?? FFChatInfo(listViewChatsRecord);
                       return FFChatPreview(
                         onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => ChatpageWidget(
-                              chatUser: chatInfo.otherUsers.length == 1
-                                  ? chatInfo.otherUsersList.first
-                                  : null,
+                              chatUser: chatInfo.otherUsers.length == 1 ? chatInfo.otherUsersList.first : null,
                               chatRef: chatInfo.chatRecord.reference,
                             ),
                           ),
                         ),
                         lastChatText: chatInfo.chatPreviewMessage(),
                         lastChatTime: listViewChatsRecord.lastMessageTime,
-                        seen: listViewChatsRecord.lastMessageSeenBy!
-                            .contains(currentUserReference),
+                        seen: listViewChatsRecord.lastMessageSeenBy!.contains(currentUserReference),
                         title: chatInfo.chatPreviewTitle(),
                         userProfilePic: chatInfo.chatPreviewPic(),
                         color: Color(0xFFEEF0F5),
@@ -102,8 +91,7 @@ class _AllchatsWidgetState extends State<AllchatsWidget> {
                           fontWeight: FontWeight.normal,
                           fontSize: 14,
                         ),
-                        contentPadding:
-                            EdgeInsetsDirectional.fromSTEB(3, 3, 3, 3),
+                        contentPadding: EdgeInsetsDirectional.fromSTEB(3, 3, 3, 3),
                         borderRadius: BorderRadius.circular(0),
                       );
                     },

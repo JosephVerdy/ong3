@@ -1,9 +1,7 @@
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CheckoutCartWidget extends StatefulWidget {
   const CheckoutCartWidget({Key? key}) : super(key: key);
@@ -72,9 +70,7 @@ class _CheckoutCartWidgetState extends State<CheckoutCartWidget> {
                 if (snapshot.data!.isEmpty) {
                   return Container();
                 }
-                final columnProductsRecord = columnProductsRecordList.isNotEmpty
-                    ? columnProductsRecordList.first
-                    : null;
+                final columnProductsRecord = columnProductsRecordList.isNotEmpty ? columnProductsRecordList.first : null;
                 return Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,14 +84,14 @@ class _CheckoutCartWidgetState extends State<CheckoutCartWidget> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                       child: Text(
-                        columnProductsRecord!.title!,
+                        columnProductsRecord.title!,
                         style: FlutterFlowTheme.of(context).bodyText1,
                       ),
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                       child: Text(
-                        columnProductsRecord!.price!.toString(),
+                        columnProductsRecord.price!.toString(),
                         style: FlutterFlowTheme.of(context).bodyText1,
                       ),
                     ),
@@ -122,8 +118,7 @@ class _CheckoutCartWidgetState extends State<CheckoutCartWidget> {
                         width: double.infinity,
                         height: 50,
                         decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                          color: FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -136,9 +131,7 @@ class _CheckoutCartWidgetState extends State<CheckoutCartWidget> {
                               children: [
                                 Text(
                                   'Shipping address',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
+                                  style: FlutterFlowTheme.of(context).bodyText1.override(
                                         fontFamily: 'Montserrat',
                                         fontSize: 15,
                                         fontWeight: FontWeight.w500,
@@ -151,8 +144,7 @@ class _CheckoutCartWidgetState extends State<CheckoutCartWidget> {
                                   buttonSize: 30,
                                   icon: Icon(
                                     Icons.edit_sharp,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                    color: FlutterFlowTheme.of(context).primaryText,
                                     size: 20,
                                   ),
                                   onPressed: () {
@@ -163,9 +155,7 @@ class _CheckoutCartWidgetState extends State<CheckoutCartWidget> {
                             ),
                             Text(
                               'Hello World',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
+                              style: FlutterFlowTheme.of(context).bodyText1.override(
                                     fontFamily: 'Montserrat',
                                     fontSize: 12,
                                   ),
@@ -182,12 +172,11 @@ class _CheckoutCartWidgetState extends State<CheckoutCartWidget> {
                       children: [
                         Text(
                           'Billing address',
-                          style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                          style: FlutterFlowTheme.of(context).bodyText1.override(
+                                fontFamily: 'Montserrat',
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
+                              ),
                         ),
                       ],
                     ),

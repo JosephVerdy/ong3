@@ -1,15 +1,14 @@
 import 'dart:io';
 
+import 'package:ong3/index.dart';
+
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart' as smooth_page_indicator;
 
 class AddproductWidget extends StatefulWidget {
@@ -44,7 +43,7 @@ class _AddproductWidgetState extends State<AddproductWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final ImagePicker _picker = ImagePicker();
   final List<XFile> _imageList = [];
-  dynamic _pickImageError;
+  SubCategoryRecord? selectedSubCategory;
 
   @override
   void initState() {
@@ -70,11 +69,7 @@ class _AddproductWidgetState extends State<AddproductWidget> {
           _imageList.addAll(pickedFileList);
         });
       }
-    } catch (e) {
-      setState(() {
-        _pickImageError = e;
-      });
-    }
+    } catch (e) {}
   }
 
   @override
@@ -360,29 +355,40 @@ class _AddproductWidgetState extends State<AddproductWidget> {
                         decoration: BoxDecoration(
                           color: Color(0xEEEEEEEE),
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Align(
-                              alignment: AlignmentDirectional(0, 0),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                                child: Text(
-                                  'Category',
-                                  style: FlutterFlowTheme.of(context).bodyText1,
+                        child: InkWell(
+                          onTap: () async {
+                            SubCategoryRecord newSubCategory = await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ChooseCategoryWidget(),
+                              ),
+                            );
+                            setState(() => selectedSubCategory = newSubCategory);
+                          },
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(0, 0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                  child: Text(
+                                    selectedSubCategory?.name ?? 'Category',
+                                    style: FlutterFlowTheme.of(context).bodyText1,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                color: Color(0xFF303030),
-                                size: 20,
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Color(0xFF303030),
+                                  size: 20,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

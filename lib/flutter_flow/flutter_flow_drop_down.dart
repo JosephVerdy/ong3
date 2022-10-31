@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 
 class FlutterFlowDropDown extends StatefulWidget {
   const FlutterFlowDropDown({
@@ -42,8 +41,7 @@ class FlutterFlowDropDown extends StatefulWidget {
 
 class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
   String? dropDownValue;
-  List<String> get effectiveOptions =>
-      widget.options.isEmpty ? ['[Option]'] : widget.options;
+  List<String> get effectiveOptions => widget.options.isEmpty ? ['[Option]'] : widget.options;
 
   @override
   void initState() {
@@ -55,9 +53,7 @@ class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
   Widget build(BuildContext context) {
     final dropdownWidget = DropdownButton<String>(
       value: effectiveOptions.contains(dropDownValue) ? dropDownValue : null,
-      hint: widget.hintText != null
-          ? Text(widget.hintText!, style: widget.textStyle)
-          : null,
+      hint: widget.hintText != null ? Text(widget.hintText!, style: widget.textStyle) : null,
       items: effectiveOptions
           .map((e) => DropdownMenuItem(
                 value: e,
@@ -88,9 +84,7 @@ class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
       ),
       child: Padding(
         padding: widget.margin,
-        child: widget.hidesUnderline
-            ? DropdownButtonHideUnderline(child: dropdownWidget)
-            : dropdownWidget,
+        child: widget.hidesUnderline ? DropdownButtonHideUnderline(child: dropdownWidget) : dropdownWidget,
       ),
     );
     if (widget.height != null || widget.width != null) {
