@@ -1,9 +1,11 @@
 import 'dart:io';
 
+import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:ong3/index.dart';
-
+import 'package:ong3/main.dart';
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
+import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -62,15 +64,55 @@ class _AddproductWidgetState extends State<AddproductWidget> {
     super.dispose();
   }
 
-  Future openImagePicker() async {
+  Future _openImagePicker() async {
     try {
       List<XFile> pickedFileList = await _picker.pickMultiImage();
-      if (pickedFileList.length != 0) {
-        setState(() {
-          _imageList.addAll(pickedFileList);
-        });
-      }
+      setState(() {
+        _imageList.addAll(pickedFileList);
+      });
     } catch (e) {}
+  }
+
+  Future<String?> uploadImage(String path, int maxWidth) async {
+    ImageProperties properties = await FlutterNativeImage.getImageProperties(path);
+    File compressedFile = await FlutterNativeImage.compressImage(path, quality: 90, targetWidth: maxWidth, targetHeight: (properties.height! * maxWidth / properties.width!).round());
+
+    var ext = path.split('.').last;
+
+    var timestamp = DateTime.now().microsecondsSinceEpoch;
+    var storagePath = 'users/$currentUserUid/uploads/$timestamp.$ext';
+    return await uploadData(storagePath, await compressedFile.readAsBytes());
+  }
+
+  Future _submit() async {
+    if ((_imageList.length == 0 && widget.productRef != null) || selectedOng == null || selectedSubCategory == null || tFprodTitleController?.text == null || _imageList.length == 0) {
+      return;
+    }
+
+    XFile thumbfile = _imageList[0];
+    var thumbRef = await uploadImage(thumbfile.path, 400);
+
+    final Map<String, dynamic> productRecord = createProductsRecordData(title: tFprodTitleController?.text, description: tFprodDescriptionController?.text, price: double.tryParse(tFPriceController?.text ?? "0"), ong: selectedOng?.reference, subCategory: selectedSubCategory?.reference, vendor: currentUserReference, thumbnail: thumbRef);
+    final productRef = await ProductsRecord.collection.add(productRecord);
+
+    for (int i = 0; i < _imageList.length; i++) {
+      XFile xfile = _imageList[i];
+      var imageRef = await uploadImage(xfile.path, 800);
+      if (imageRef != null) productRef.collection('images').add(createImagesRecordData(path: imageRef, isthumbnail: false));
+      /*XFile xfile = _imageList[i];
+      var ext = xfile.path.split('.').last;
+      var timestamp = DateTime.now().microsecondsSinceEpoch;
+      var storagePath = 'users/$currentUserUid/uploads/$timestamp.$ext';
+      var imageRef = await uploadData(storagePath, await xfile.readAsBytes());
+      if (imageRef != null) productRef.collection('images').add(createImagesRecordData(path: imageRef, isthumbnail: false));*/
+    }
+
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => NavBarPage(initialPage: 'Home'),
+      ),
+    );
   }
 
   @override
@@ -86,7 +128,7 @@ class _AddproductWidgetState extends State<AddproductWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 FFButtonWidget(
-                  onPressed: openImagePicker,
+                  onPressed: _openImagePicker,
                   text: 'Add photos',
                   options: FFButtonOptions(
                     width: 130,
@@ -122,6 +164,8 @@ class _AddproductWidgetState extends State<AddproductWidget> {
                       if (snapshot.data != null) pageViewImagesRecordList.addAll(snapshot.data!.map((e) => _Image.fromRecord(e)));
 
                       pageViewImagesRecordList.addAll(_imageList.map((e) => (_Image.fromFile(e))));
+
+                      if (pageViewImagesRecordList.length == 0) return Container();
 
                       return Container(
                         width: double.infinity,
@@ -291,6 +335,12 @@ class _AddproductWidgetState extends State<AddproductWidget> {
                             textAlign: TextAlign.start,
                             maxLines: 5,
                             keyboardType: TextInputType.multiline,
+                            /* validator: (val) {
+                                  if (val?.isEmpty != false) {
+                                    return 'Field is required';
+                                  }
+                                  return null;
+                                }*/
                           ),
                         ),
                       ),
@@ -444,9 +494,7 @@ class _AddproductWidgetState extends State<AddproductWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                         child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
-                          },
+                          onPressed: _submit,
                           text: 'Add product',
                           options: FFButtonOptions(
                             width: double.infinity,
@@ -469,6 +517,7 @@ class _AddproductWidgetState extends State<AddproductWidget> {
                   ),
                 ),
               ],
+              //),
             ),
           ),
         ),
