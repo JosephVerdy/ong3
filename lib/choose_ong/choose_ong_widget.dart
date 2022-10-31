@@ -1,9 +1,13 @@
+import 'package:ong3/flutter_flow/chat/index.dart';
+
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 
 class ChooseOngWidget extends StatefulWidget {
-  const ChooseOngWidget({Key? key}) : super(key: key);
+  const ChooseOngWidget({Key? key, required this.ongType}) : super(key: key);
+
+  final OngTypesRecord ongType;
 
   @override
   _ChooseOngWidgetState createState() => _ChooseOngWidgetState();
@@ -31,7 +35,7 @@ class _ChooseOngWidgetState extends State<ChooseOngWidget> {
             size: 25,
           ),
           onPressed: () {
-            print('IconButton pressed ...');
+            Navigator.pop(context);
           },
         ),
         title: Text(
@@ -51,27 +55,46 @@ class _ChooseOngWidgetState extends State<ChooseOngWidget> {
           onTap: () => FocusScope.of(context).unfocus(),
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                ListTile(
-                  title: Text(
-                    'Lorem ipsum dolor...',
-                    style: FlutterFlowTheme.of(context).title3.override(
-                          fontFamily: 'Montserrat',
-                          fontSize: 14,
-                          fontWeight: FontWeight.normal,
+            child: StreamBuilder<List<OngsRecord>>(
+              stream: queryOngsRecord(
+                queryBuilder: (ongsRecord) => ongsRecord.where('types', arrayContains: widget.ongType.reference).orderBy('name'),
+              ),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: LinearProgressIndicator(
+                      color: FlutterFlowTheme.of(context).primaryColor,
+                    ),
+                  );
+                }
+                List<OngsRecord> columnOngsRecordList = snapshot.data!;
+                return SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: List.generate(columnOngsRecordList.length, (columnIndex) {
+                      final columnOngsRecord = columnOngsRecordList[columnIndex];
+                      return InkWell(
+                        onTap: () async {
+                          Navigator.pop(context, columnOngsRecord);
+                        },
+                        child: ListTile(
+                          title: Text(
+                            columnOngsRecord.name ?? "no name",
+                            style: FlutterFlowTheme.of(context).title3.override(
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                          ),
+                          tileColor: Color(0xFFF5F5F5),
+                          dense: false,
                         ),
+                      );
+                    }),
                   ),
-                  trailing: Icon(
-                    Icons.arrow_forward_ios,
-                    color: Color(0xFF303030),
-                    size: 20,
-                  ),
-                  tileColor: Color(0xFFF5F5F5),
-                  dense: false,
-                ),
-              ],
+                );
+              },
             ),
           ),
         ),

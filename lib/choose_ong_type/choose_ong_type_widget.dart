@@ -1,3 +1,5 @@
+import 'package:ong3/index.dart';
+
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -32,7 +34,7 @@ class _ChooseOngTypeWidgetState extends State<ChooseOngTypeWidget> {
             size: 25,
           ),
           onPressed: () {
-            print('IconButton pressed ...');
+            Navigator.pop(context);
           },
         ),
         title: Text(
@@ -64,28 +66,41 @@ class _ChooseOngTypeWidgetState extends State<ChooseOngTypeWidget> {
                   );
                 }
                 List<OngTypesRecord> columnOngTypesRecordList = snapshot.data!;
-                return Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: List.generate(columnOngTypesRecordList.length, (columnIndex) {
-                    final columnOngTypesRecord = columnOngTypesRecordList[columnIndex];
-                    return ListTile(
-                      title: Text(
-                        columnOngTypesRecord.name ?? "no name",
-                        style: FlutterFlowTheme.of(context).title3.override(
-                              fontFamily: 'Montserrat',
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
+                return SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: List.generate(columnOngTypesRecordList.length, (columnIndex) {
+                      final columnOngTypesRecord = columnOngTypesRecordList[columnIndex];
+                      return InkWell(
+                        onTap: () async {
+                          OngsRecord? selectedOng = await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ChooseOngWidget(ongType: columnOngTypesRecord),
                             ),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Color(0xFF303030),
-                        size: 20,
-                      ),
-                      tileColor: Color(0xFFF5F5F5),
-                      dense: false,
-                    );
-                  }),
+                          );
+                          Navigator.pop(context, selectedOng);
+                        },
+                        child: ListTile(
+                          title: Text(
+                            columnOngTypesRecord.name ?? "no name",
+                            style: FlutterFlowTheme.of(context).title3.override(
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                          ),
+                          trailing: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Color(0xFF303030),
+                            size: 20,
+                          ),
+                          tileColor: Color(0xFFF5F5F5),
+                          dense: false,
+                        ),
+                      );
+                    }),
+                  ),
                 );
               },
             ),

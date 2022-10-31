@@ -34,7 +34,7 @@ class _ChooseSubCategoryWidgetState extends State<ChooseSubCategoryWidget> {
             size: 25,
           ),
           onPressed: () {
-            print('IconButton pressed ...');
+            Navigator.pop(context);
           },
         ),
         title: Text(
@@ -66,33 +66,30 @@ class _ChooseSubCategoryWidgetState extends State<ChooseSubCategoryWidget> {
                   );
                 }
                 List<SubCategoryRecord> columnCategoriesRecordList = snapshot.data!;
-                return Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: List.generate(columnCategoriesRecordList.length, (columnIndex) {
-                    final columnSubCategoryRecord = columnCategoriesRecordList[columnIndex];
-                    return InkWell(
-                      onTap: () async {
-                        Navigator.pop(context, columnSubCategoryRecord);
-                      },
-                      child: ListTile(
-                        title: Text(
-                          columnSubCategoryRecord.name ?? "no name",
-                          style: FlutterFlowTheme.of(context).title3.override(
-                                fontFamily: 'Montserrat',
-                                fontSize: 14,
-                                fontWeight: FontWeight.normal,
-                              ),
+                return SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: List.generate(columnCategoriesRecordList.length, (columnIndex) {
+                      final columnSubCategoryRecord = columnCategoriesRecordList[columnIndex];
+                      return InkWell(
+                        onTap: () async {
+                          Navigator.pop(context, columnSubCategoryRecord);
+                        },
+                        child: ListTile(
+                          title: Text(
+                            columnSubCategoryRecord.name ?? "no name",
+                            style: FlutterFlowTheme.of(context).title3.override(
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                          ),
+                          tileColor: Color(0xFFF5F5F5),
+                          dense: false,
                         ),
-                        trailing: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Color(0xFF303030),
-                          size: 20,
-                        ),
-                        tileColor: Color(0xFFF5F5F5),
-                        dense: false,
-                      ),
-                    );
-                  }),
+                      );
+                    }),
+                  ),
                 );
               },
             ),

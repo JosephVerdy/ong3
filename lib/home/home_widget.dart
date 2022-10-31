@@ -34,8 +34,7 @@ class _HomeWidgetState extends State<HomeWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
-      body: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+      body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,

@@ -34,7 +34,7 @@ class _ChooseCategoryWidgetState extends State<ChooseCategoryWidget> {
             size: 25,
           ),
           onPressed: () {
-            print('IconButton pressed ...');
+            Navigator.pop(context);
           },
         ),
         title: Text(
@@ -73,7 +73,7 @@ class _ChooseCategoryWidgetState extends State<ChooseCategoryWidget> {
                       final columnCategoriesRecord = columnCategoriesRecordList[columnIndex];
                       return InkWell(
                         onTap: () async {
-                          SubCategoryRecord selectedSubCategory = await Navigator.push(
+                          SubCategoryRecord? selectedSubCategory = await Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => ChooseSubCategoryWidget(category: columnCategoriesRecord),
