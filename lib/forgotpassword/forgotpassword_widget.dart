@@ -100,6 +100,7 @@ class _ForgotpasswordWidgetState extends State<ForgotpasswordWidget> {
                       fillColor: FlutterFlowTheme.of(context).primaryBackground,
                     ),
                     style: FlutterFlowTheme.of(context).bodyText1,
+                    keyboardType: TextInputType.emailAddress,
                   ),
                 ),
                 Padding(

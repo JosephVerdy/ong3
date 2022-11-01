@@ -150,6 +150,7 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                         fillColor: FlutterFlowTheme.of(context).primaryBackground,
                                       ),
                                       style: FlutterFlowTheme.of(context).bodyText1,
+                                      keyboardType: TextInputType.emailAddress,
                                     ),
                                   ),
                                   Padding(
