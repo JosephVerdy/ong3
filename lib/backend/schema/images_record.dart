@@ -10,17 +10,13 @@ abstract class ImagesRecord implements Built<ImagesRecord, ImagesRecordBuilder> 
 
   String? get path;
 
-  bool? get isthumbnail;
-
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
   DocumentReference get parentReference => reference.parent.parent!;
 
-  static void _initializeBuilder(ImagesRecordBuilder builder) => builder
-    ..path = ''
-    ..isthumbnail = false;
+  static void _initializeBuilder(ImagesRecordBuilder builder) => builder..path = '';
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) => parent != null ? parent.collection('images') : FirebaseFirestore.instance.collectionGroup('images');
 
@@ -36,16 +32,11 @@ abstract class ImagesRecord implements Built<ImagesRecord, ImagesRecordBuilder> 
   static ImagesRecord getDocumentFromData(Map<String, dynamic> data, DocumentReference reference) => serializers.deserializeWith(serializer, {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
-Map<String, dynamic> createImagesRecordData({
-  String? path,
-  bool? isthumbnail,
-}) {
+Map<String, dynamic> createImagesRecordData({String? path}) {
   final firestoreData = serializers.toFirestore(
     ImagesRecord.serializer,
     ImagesRecord(
-      (i) => i
-        ..path = path
-        ..isthumbnail = isthumbnail,
+      (i) => i..path = path,
     ),
   );
 

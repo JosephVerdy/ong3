@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../backend/schema/users_record.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -14,6 +15,7 @@ class FirstpageWidget extends StatefulWidget {
 }
 
 class _FirstpageWidgetState extends State<FirstpageWidget> {
+  TextEditingController? tFDisplaynameController;
   TextEditingController? tFEmailController;
   TextEditingController? tFPassController;
 
@@ -30,6 +32,7 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
   @override
   void initState() {
     super.initState();
+    tFDisplaynameController = TextEditingController();
     tFEmailController = TextEditingController();
     tFPassController = TextEditingController();
     tFPassVisibility = false;
@@ -42,6 +45,7 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
 
   @override
   void dispose() {
+    tFDisplaynameController?.dispose();
     tFEmailController?.dispose();
     tFPassController?.dispose();
     tFconfimpassController?.dispose();
@@ -89,7 +93,7 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                           isScrollable: true,
                           labelColor: FlutterFlowTheme.of(context).primaryColor,
                           labelStyle: FlutterFlowTheme.of(context).bodyText1.override(
-                                fontFamily: 'Montserrat',
+                                fontFamily: 'Noto Sans',
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -109,6 +113,49 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                               Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                                    child: TextFormField(
+                                      controller: tFDisplaynameController,
+                                      autofocus: true,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        hintText: 'Name',
+                                        hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context).primaryText,
+                                            width: 1,
+                                          ),
+                                          borderRadius: BorderRadius.circular(2),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context).primaryText,
+                                            width: 1,
+                                          ),
+                                          borderRadius: BorderRadius.circular(2),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 1,
+                                          ),
+                                          borderRadius: BorderRadius.circular(2),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 1,
+                                          ),
+                                          borderRadius: BorderRadius.circular(2),
+                                        ),
+                                        filled: true,
+                                        fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                                      ),
+                                      style: FlutterFlowTheme.of(context).bodyText1,
+                                    ),
+                                  ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                                     child: TextFormField(
@@ -285,6 +332,10 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                           return;
                                         }
 
+                                        final usersCreateData = createUsersRecordData(
+                                          displayName: tFDisplaynameController!.text,
+                                        );
+                                        await UsersRecord.collection.doc(user.uid).update(usersCreateData);
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -298,7 +349,7 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                         height: 40,
                                         color: FlutterFlowTheme.of(context).primaryColor,
                                         textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                                              fontFamily: 'Montserrat',
+                                              fontFamily: 'Noto Sans',
                                               color: Colors.white,
                                               fontSize: 12,
                                             ),
@@ -344,28 +395,28 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context).primaryColor,
-                                            width: 2,
+                                            width: 1,
                                           ),
                                           borderRadius: BorderRadius.circular(2),
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context).primaryColor,
-                                            width: 2,
+                                            width: 1,
                                           ),
                                           borderRadius: BorderRadius.circular(2),
                                         ),
                                         errorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
-                                            width: 2,
+                                            width: 1,
                                           ),
                                           borderRadius: BorderRadius.circular(2),
                                         ),
                                         focusedErrorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
-                                            width: 2,
+                                            width: 1,
                                           ),
                                           borderRadius: BorderRadius.circular(2),
                                         ),
@@ -461,7 +512,7 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                         height: 40,
                                         color: FlutterFlowTheme.of(context).primaryColor,
                                         textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                                              fontFamily: 'Montserrat',
+                                              fontFamily: 'Noto Sans',
                                               color: Colors.white,
                                               fontSize: 12,
                                             ),

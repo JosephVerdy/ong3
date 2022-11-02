@@ -6,8 +6,7 @@ part of 'images_record.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<ImagesRecord> _$imagesRecordSerializer =
-    new _$ImagesRecordSerializer();
+Serializer<ImagesRecord> _$imagesRecordSerializer = new _$ImagesRecordSerializer();
 
 class _$ImagesRecordSerializer implements StructuredSerializer<ImagesRecord> {
   @override
@@ -16,39 +15,26 @@ class _$ImagesRecordSerializer implements StructuredSerializer<ImagesRecord> {
   final String wireName = 'ImagesRecord';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, ImagesRecord object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(Serializers serializers, ImagesRecord object, {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
     value = object.path;
     if (value != null) {
       result
         ..add('path')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.isthumbnail;
-    if (value != null) {
-      result
-        ..add('isthumbnail')
-        ..add(
-            serializers.serialize(value, specifiedType: const FullType(bool)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(String)));
     }
     value = object.ffRef;
     if (value != null) {
       result
         ..add('Document__Reference__Field')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                DocumentReference, const [const FullType.nullable(Object)])));
+        ..add(serializers.serialize(value, specifiedType: const FullType(DocumentReference, const [const FullType.nullable(Object)])));
     }
     return result;
   }
 
   @override
-  ImagesRecord deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+  ImagesRecord deserialize(Serializers serializers, Iterable<Object?> serialized, {FullType specifiedType = FullType.unspecified}) {
     final result = new ImagesRecordBuilder();
 
     final iterator = serialized.iterator;
@@ -58,18 +44,10 @@ class _$ImagesRecordSerializer implements StructuredSerializer<ImagesRecord> {
       final Object? value = iterator.current;
       switch (key) {
         case 'path':
-          result.path = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'isthumbnail':
-          result.isthumbnail = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool?;
+          result.path = serializers.deserialize(value, specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
-          result.ffRef = serializers.deserialize(value,
-              specifiedType: const FullType(DocumentReference, const [
-                const FullType.nullable(Object)
-              ])) as DocumentReference<Object?>?;
+          result.ffRef = serializers.deserialize(value, specifiedType: const FullType(DocumentReference, const [const FullType.nullable(Object)])) as DocumentReference<Object?>?;
           break;
       }
     }
@@ -82,18 +60,14 @@ class _$ImagesRecord extends ImagesRecord {
   @override
   final String? path;
   @override
-  final bool? isthumbnail;
-  @override
   final DocumentReference<Object?>? ffRef;
 
-  factory _$ImagesRecord([void Function(ImagesRecordBuilder)? updates]) =>
-      (new ImagesRecordBuilder()..update(updates))._build();
+  factory _$ImagesRecord([void Function(ImagesRecordBuilder)? updates]) => (new ImagesRecordBuilder()..update(updates))._build();
 
-  _$ImagesRecord._({this.path, this.isthumbnail, this.ffRef}) : super._();
+  _$ImagesRecord._({this.path, this.ffRef}) : super._();
 
   @override
-  ImagesRecord rebuild(void Function(ImagesRecordBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  ImagesRecord rebuild(void Function(ImagesRecordBuilder) updates) => (toBuilder()..update(updates)).build();
 
   @override
   ImagesRecordBuilder toBuilder() => new ImagesRecordBuilder()..replace(this);
@@ -101,39 +75,29 @@ class _$ImagesRecord extends ImagesRecord {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is ImagesRecord &&
-        path == other.path &&
-        isthumbnail == other.isthumbnail &&
-        ffRef == other.ffRef;
+    return other is ImagesRecord && path == other.path && ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, path.hashCode), isthumbnail.hashCode), ffRef.hashCode));
+    return $jf($jc(($jc(0, path.hashCode)), ffRef.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'ImagesRecord')
           ..add('path', path)
-          ..add('isthumbnail', isthumbnail)
           ..add('ffRef', ffRef))
         .toString();
   }
 }
 
-class ImagesRecordBuilder
-    implements Builder<ImagesRecord, ImagesRecordBuilder> {
+class ImagesRecordBuilder implements Builder<ImagesRecord, ImagesRecordBuilder> {
   _$ImagesRecord? _$v;
 
   String? _path;
   String? get path => _$this._path;
   set path(String? path) => _$this._path = path;
-
-  bool? _isthumbnail;
-  bool? get isthumbnail => _$this._isthumbnail;
-  set isthumbnail(bool? isthumbnail) => _$this._isthumbnail = isthumbnail;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -147,7 +111,6 @@ class ImagesRecordBuilder
     final $v = _$v;
     if ($v != null) {
       _path = $v.path;
-      _isthumbnail = $v.isthumbnail;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -169,9 +132,7 @@ class ImagesRecordBuilder
   ImagesRecord build() => _build();
 
   _$ImagesRecord _build() {
-    final _$result = _$v ??
-        new _$ImagesRecord._(
-            path: path, isthumbnail: isthumbnail, ffRef: ffRef);
+    final _$result = _$v ?? new _$ImagesRecord._(path: path, ffRef: ffRef);
     replace(_$result);
     return _$result;
   }

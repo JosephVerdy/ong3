@@ -18,6 +18,9 @@ abstract class ProductsRecord implements Built<ProductsRecord, ProductsRecordBui
 
   String? get thumbnail;
 
+  @BuiltValueField(wireName: 'created_date')
+  DateTime? get createdDate;
+
   DocumentReference? get vendor;
 
   DocumentReference? get buyer;
@@ -33,7 +36,8 @@ abstract class ProductsRecord implements Built<ProductsRecord, ProductsRecordBui
     ..title = ''
     ..description = ''
     ..price = 0.0
-    ..thumbnail = '';
+    ..thumbnail = ''
+    ..createdDate = DateTime.now();
 
   static CollectionReference get collection => FirebaseFirestore.instance.collection('products');
 
@@ -53,23 +57,23 @@ Map<String, dynamic> createProductsRecordData({
   double? price,
   DocumentReference? ong,
   String? thumbnail,
+  DateTime? createdDate,
   DocumentReference? vendor,
   DocumentReference? buyer,
   DocumentReference? subCategory,
 }) {
   final firestoreData = serializers.toFirestore(
     ProductsRecord.serializer,
-    ProductsRecord(
-      (p) => p
-        ..title = title
-        ..description = description
-        ..price = price
-        ..ong = ong
-        ..thumbnail = thumbnail
-        ..vendor = vendor
-        ..buyer = buyer
-        ..subCategory = subCategory,
-    ),
+    ProductsRecord((p) => p
+      ..title = title
+      ..description = description
+      ..price = price
+      ..ong = ong
+      ..thumbnail = thumbnail
+      ..createdDate = createdDate
+      ..vendor = vendor
+      ..buyer = buyer
+      ..subCategory = subCategory),
   );
 
   return firestoreData;

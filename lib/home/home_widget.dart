@@ -5,7 +5,6 @@ import '../flutter_flow/flutter_flow_toggle_icon.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../prod_detail/prod_detail_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -32,7 +31,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
+      backgroundColor: Color(0xFFF5F5F5),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -90,7 +89,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         options: options.toList(),
                                         onSelected: onSelected,
                                         textStyle: FlutterFlowTheme.of(context).bodyText1.override(
-                                              fontFamily: 'Montserrat',
+                                              fontFamily: 'Noto Sans',
                                               color: FlutterFlowTheme.of(context).primaryColor,
                                             ),
                                         textHighlightStyle: TextStyle(),
@@ -162,7 +161,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           ),
                                         ),
                                         style: FlutterFlowTheme.of(context).bodyText1.override(
-                                              fontFamily: 'Montserrat',
+                                              fontFamily: 'Noto Sans',
                                               color: FlutterFlowTheme.of(context).primaryColor,
                                             ),
                                       );
@@ -195,7 +194,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                       child: Text(
                         'Recommended for you',
                         style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Montserrat',
+                              fontFamily: 'Noto Sans',
                               fontWeight: FontWeight.bold,
                             ),
                       ),
@@ -207,7 +206,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           'View All',
                           textAlign: TextAlign.end,
                           style: FlutterFlowTheme.of(context).bodyText1.override(
-                                fontFamily: 'Montserrat',
+                                fontFamily: 'Noto Sans',
                                 color: FlutterFlowTheme.of(context).primaryColor,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -218,7 +217,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 ),
                 StreamBuilder<List<ProductsRecord>>(
                   stream: queryProductsRecord(
-                    queryBuilder: (productsRecord) => productsRecord.where('title', isEqualTo: tFSearchController!.text != '' ? tFSearchController!.text : null),
+                    queryBuilder: (productsRecord) => productsRecord.where('title', isEqualTo: tFSearchController!.text != '' ? tFSearchController!.text : null).orderBy('created_date', descending: true),
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
@@ -326,7 +325,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         return Text(
                                           textOngsRecord.name!,
                                           style: FlutterFlowTheme.of(context).bodyText2.override(
-                                                fontFamily: 'Montserrat',
+                                                fontFamily: 'Noto Sans',
                                                 color: FlutterFlowTheme.of(context).primaryColor,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.normal,
@@ -337,7 +336,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     Text(
                                       wrapProductsRecord.title!,
                                       style: FlutterFlowTheme.of(context).subtitle1.override(
-                                            fontFamily: 'Montserrat',
+                                            fontFamily: 'Noto Sans',
                                             color: Color(0xFF101213),
                                             fontSize: 16,
                                             fontWeight: FontWeight.w500,
@@ -348,7 +347,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       child: Text(
                                         wrapProductsRecord.price!.toString(),
                                         style: FlutterFlowTheme.of(context).bodyText2.override(
-                                              fontFamily: 'Montserrat',
+                                              fontFamily: 'Noto Sans',
                                               color: Color(0xFF57636C),
                                               fontSize: 12,
                                               fontWeight: FontWeight.normal,

@@ -90,19 +90,13 @@ class _AddproductWidgetState extends State<AddproductWidget> {
     XFile thumbfile = _imageList[0];
     var thumbRef = await uploadImage(thumbfile.path, 400);
 
-    final Map<String, dynamic> productRecord = createProductsRecordData(title: tFprodTitleController?.text, description: tFprodDescriptionController?.text, price: double.tryParse(tFPriceController?.text ?? "0"), ong: selectedOng?.reference, subCategory: selectedSubCategory?.reference, vendor: currentUserReference, thumbnail: thumbRef);
+    final Map<String, dynamic> productRecord = createProductsRecordData(title: tFprodTitleController?.text, description: tFprodDescriptionController?.text, price: double.tryParse(tFPriceController?.text ?? "0"), createdDate: DateTime.now(), ong: selectedOng?.reference, subCategory: selectedSubCategory?.reference, vendor: currentUserReference, thumbnail: thumbRef);
     final productRef = await ProductsRecord.collection.add(productRecord);
 
     for (int i = 0; i < _imageList.length; i++) {
       XFile xfile = _imageList[i];
       var imageRef = await uploadImage(xfile.path, 800);
-      if (imageRef != null) productRef.collection('images').add(createImagesRecordData(path: imageRef, isthumbnail: false));
-      /*XFile xfile = _imageList[i];
-      var ext = xfile.path.split('.').last;
-      var timestamp = DateTime.now().microsecondsSinceEpoch;
-      var storagePath = 'users/$currentUserUid/uploads/$timestamp.$ext';
-      var imageRef = await uploadData(storagePath, await xfile.readAsBytes());
-      if (imageRef != null) productRef.collection('images').add(createImagesRecordData(path: imageRef, isthumbnail: false));*/
+      if (imageRef != null) productRef.collection('images').add(createImagesRecordData(path: imageRef));
     }
 
     await Navigator.push(

@@ -6,96 +6,83 @@ part of 'products_record.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<ProductsRecord> _$productsRecordSerializer =
-    new _$ProductsRecordSerializer();
+Serializer<ProductsRecord> _$productsRecordSerializer = new _$ProductsRecordSerializer();
 
-class _$ProductsRecordSerializer
-    implements StructuredSerializer<ProductsRecord> {
+class _$ProductsRecordSerializer implements StructuredSerializer<ProductsRecord> {
   @override
   final Iterable<Type> types = const [ProductsRecord, _$ProductsRecord];
   @override
   final String wireName = 'ProductsRecord';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, ProductsRecord object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(Serializers serializers, ProductsRecord object, {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
     value = object.title;
     if (value != null) {
       result
         ..add('title')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(String)));
     }
     value = object.description;
     if (value != null) {
       result
         ..add('description')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(String)));
     }
     value = object.price;
     if (value != null) {
       result
         ..add('price')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(double)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(double)));
     }
     value = object.ong;
     if (value != null) {
       result
         ..add('ong')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                DocumentReference, const [const FullType.nullable(Object)])));
+        ..add(serializers.serialize(value, specifiedType: const FullType(DocumentReference, const [const FullType.nullable(Object)])));
     }
     value = object.thumbnail;
     if (value != null) {
       result
         ..add('thumbnail')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(String)));
+    }
+    value = object.createdDate;
+    if (value != null) {
+      result
+        ..add('created_date')
+        ..add(serializers.serialize(value, specifiedType: const FullType(DateTime)));
     }
     value = object.vendor;
     if (value != null) {
       result
         ..add('vendor')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                DocumentReference, const [const FullType.nullable(Object)])));
+        ..add(serializers.serialize(value, specifiedType: const FullType(DocumentReference, const [const FullType.nullable(Object)])));
     }
     value = object.buyer;
     if (value != null) {
       result
         ..add('buyer')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                DocumentReference, const [const FullType.nullable(Object)])));
+        ..add(serializers.serialize(value, specifiedType: const FullType(DocumentReference, const [const FullType.nullable(Object)])));
     }
     value = object.subCategory;
     if (value != null) {
       result
         ..add('sub_category')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                DocumentReference, const [const FullType.nullable(Object)])));
+        ..add(serializers.serialize(value, specifiedType: const FullType(DocumentReference, const [const FullType.nullable(Object)])));
     }
     value = object.ffRef;
     if (value != null) {
       result
         ..add('Document__Reference__Field')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                DocumentReference, const [const FullType.nullable(Object)])));
+        ..add(serializers.serialize(value, specifiedType: const FullType(DocumentReference, const [const FullType.nullable(Object)])));
     }
     return result;
   }
 
   @override
-  ProductsRecord deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+  ProductsRecord deserialize(Serializers serializers, Iterable<Object?> serialized, {FullType specifiedType = FullType.unspecified}) {
     final result = new ProductsRecordBuilder();
 
     final iterator = serialized.iterator;
@@ -105,50 +92,34 @@ class _$ProductsRecordSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'title':
-          result.title = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.title = serializers.deserialize(value, specifiedType: const FullType(String)) as String?;
           break;
         case 'description':
-          result.description = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.description = serializers.deserialize(value, specifiedType: const FullType(String)) as String?;
           break;
         case 'price':
-          result.price = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?;
+          result.price = serializers.deserialize(value, specifiedType: const FullType(double)) as double?;
           break;
         case 'ong':
-          result.ong = serializers.deserialize(value,
-              specifiedType: const FullType(DocumentReference, const [
-                const FullType.nullable(Object)
-              ])) as DocumentReference<Object?>?;
+          result.ong = serializers.deserialize(value, specifiedType: const FullType(DocumentReference, const [const FullType.nullable(Object)])) as DocumentReference<Object?>?;
           break;
         case 'thumbnail':
-          result.thumbnail = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.thumbnail = serializers.deserialize(value, specifiedType: const FullType(String)) as String?;
+          break;
+        case 'created_date':
+          result.createdDate = serializers.deserialize(value, specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'vendor':
-          result.vendor = serializers.deserialize(value,
-              specifiedType: const FullType(DocumentReference, const [
-                const FullType.nullable(Object)
-              ])) as DocumentReference<Object?>?;
+          result.vendor = serializers.deserialize(value, specifiedType: const FullType(DocumentReference, const [const FullType.nullable(Object)])) as DocumentReference<Object?>?;
           break;
         case 'buyer':
-          result.buyer = serializers.deserialize(value,
-              specifiedType: const FullType(DocumentReference, const [
-                const FullType.nullable(Object)
-              ])) as DocumentReference<Object?>?;
+          result.buyer = serializers.deserialize(value, specifiedType: const FullType(DocumentReference, const [const FullType.nullable(Object)])) as DocumentReference<Object?>?;
           break;
         case 'sub_category':
-          result.subCategory = serializers.deserialize(value,
-              specifiedType: const FullType(DocumentReference, const [
-                const FullType.nullable(Object)
-              ])) as DocumentReference<Object?>?;
+          result.subCategory = serializers.deserialize(value, specifiedType: const FullType(DocumentReference, const [const FullType.nullable(Object)])) as DocumentReference<Object?>?;
           break;
         case 'Document__Reference__Field':
-          result.ffRef = serializers.deserialize(value,
-              specifiedType: const FullType(DocumentReference, const [
-                const FullType.nullable(Object)
-              ])) as DocumentReference<Object?>?;
+          result.ffRef = serializers.deserialize(value, specifiedType: const FullType(DocumentReference, const [const FullType.nullable(Object)])) as DocumentReference<Object?>?;
           break;
       }
     }
@@ -169,6 +140,8 @@ class _$ProductsRecord extends ProductsRecord {
   @override
   final String? thumbnail;
   @override
+  final DateTime? createdDate;
+  @override
   final DocumentReference<Object?>? vendor;
   @override
   final DocumentReference<Object?>? buyer;
@@ -177,62 +150,25 @@ class _$ProductsRecord extends ProductsRecord {
   @override
   final DocumentReference<Object?>? ffRef;
 
-  factory _$ProductsRecord([void Function(ProductsRecordBuilder)? updates]) =>
-      (new ProductsRecordBuilder()..update(updates))._build();
+  factory _$ProductsRecord([void Function(ProductsRecordBuilder)? updates]) => (new ProductsRecordBuilder()..update(updates))._build();
 
-  _$ProductsRecord._(
-      {this.title,
-      this.description,
-      this.price,
-      this.ong,
-      this.thumbnail,
-      this.vendor,
-      this.buyer,
-      this.subCategory,
-      this.ffRef})
-      : super._();
+  _$ProductsRecord._({this.title, this.description, this.price, this.ong, this.thumbnail, this.createdDate, this.vendor, this.buyer, this.subCategory, this.ffRef}) : super._();
 
   @override
-  ProductsRecord rebuild(void Function(ProductsRecordBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  ProductsRecord rebuild(void Function(ProductsRecordBuilder) updates) => (toBuilder()..update(updates)).build();
 
   @override
-  ProductsRecordBuilder toBuilder() =>
-      new ProductsRecordBuilder()..replace(this);
+  ProductsRecordBuilder toBuilder() => new ProductsRecordBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is ProductsRecord &&
-        title == other.title &&
-        description == other.description &&
-        price == other.price &&
-        ong == other.ong &&
-        thumbnail == other.thumbnail &&
-        vendor == other.vendor &&
-        buyer == other.buyer &&
-        subCategory == other.subCategory &&
-        ffRef == other.ffRef;
+    return other is ProductsRecord && title == other.title && description == other.description && price == other.price && ong == other.ong && thumbnail == other.thumbnail && createdDate == other.createdDate && vendor == other.vendor && buyer == other.buyer && subCategory == other.subCategory && ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc($jc(0, title.hashCode),
-                                    description.hashCode),
-                                price.hashCode),
-                            ong.hashCode),
-                        thumbnail.hashCode),
-                    vendor.hashCode),
-                buyer.hashCode),
-            subCategory.hashCode),
-        ffRef.hashCode));
+    return $jf($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc(0, title.hashCode), description.hashCode), price.hashCode), ong.hashCode), thumbnail.hashCode), createdDate.hashCode), vendor.hashCode), buyer.hashCode), subCategory.hashCode), ffRef.hashCode));
   }
 
   @override
@@ -243,6 +179,7 @@ class _$ProductsRecord extends ProductsRecord {
           ..add('price', price)
           ..add('ong', ong)
           ..add('thumbnail', thumbnail)
+          ..add('created_date', createdDate)
           ..add('vendor', vendor)
           ..add('buyer', buyer)
           ..add('subCategory', subCategory)
@@ -251,8 +188,7 @@ class _$ProductsRecord extends ProductsRecord {
   }
 }
 
-class ProductsRecordBuilder
-    implements Builder<ProductsRecord, ProductsRecordBuilder> {
+class ProductsRecordBuilder implements Builder<ProductsRecord, ProductsRecordBuilder> {
   _$ProductsRecord? _$v;
 
   String? _title;
@@ -275,6 +211,10 @@ class ProductsRecordBuilder
   String? get thumbnail => _$this._thumbnail;
   set thumbnail(String? thumbnail) => _$this._thumbnail = thumbnail;
 
+  DateTime? _createdDate;
+  DateTime? get createdDate => _$this._createdDate;
+  set createdDate(DateTime? createdDate) => _$this._createdDate = createdDate;
+
   DocumentReference<Object?>? _vendor;
   DocumentReference<Object?>? get vendor => _$this._vendor;
   set vendor(DocumentReference<Object?>? vendor) => _$this._vendor = vendor;
@@ -285,8 +225,7 @@ class ProductsRecordBuilder
 
   DocumentReference<Object?>? _subCategory;
   DocumentReference<Object?>? get subCategory => _$this._subCategory;
-  set subCategory(DocumentReference<Object?>? subCategory) =>
-      _$this._subCategory = subCategory;
+  set subCategory(DocumentReference<Object?>? subCategory) => _$this._subCategory = subCategory;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -304,6 +243,7 @@ class ProductsRecordBuilder
       _price = $v.price;
       _ong = $v.ong;
       _thumbnail = $v.thumbnail;
+      _createdDate = $v.createdDate;
       _vendor = $v.vendor;
       _buyer = $v.buyer;
       _subCategory = $v.subCategory;
@@ -328,17 +268,7 @@ class ProductsRecordBuilder
   ProductsRecord build() => _build();
 
   _$ProductsRecord _build() {
-    final _$result = _$v ??
-        new _$ProductsRecord._(
-            title: title,
-            description: description,
-            price: price,
-            ong: ong,
-            thumbnail: thumbnail,
-            vendor: vendor,
-            buyer: buyer,
-            subCategory: subCategory,
-            ffRef: ffRef);
+    final _$result = _$v ?? new _$ProductsRecord._(title: title, description: description, price: price, ong: ong, thumbnail: thumbnail, createdDate: createdDate, vendor: vendor, buyer: buyer, subCategory: subCategory, ffRef: ffRef);
     replace(_$result);
     return _$result;
   }
