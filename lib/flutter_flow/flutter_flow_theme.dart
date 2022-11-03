@@ -86,52 +86,52 @@ class ThemeTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get title1Family => 'Montserrat';
+  String get title1Family => 'Noto Sans';
   TextStyle get title1 => GoogleFonts.getFont(
-        'Montserrat',
+        'Noto Sans',
         color: Colors.black,
         fontWeight: FontWeight.bold,
         fontSize: 32,
       );
-  String get title2Family => 'Montserrat';
+  String get title2Family => 'Noto Sans';
   TextStyle get title2 => GoogleFonts.getFont(
-        'Montserrat',
+        'Noto Sans',
         color: Colors.black,
         fontWeight: FontWeight.bold,
         fontSize: 26,
         fontStyle: FontStyle.normal,
       );
-  String get title3Family => 'Montserrat';
+  String get title3Family => 'Noto Sans';
   TextStyle get title3 => GoogleFonts.getFont(
-        'Montserrat',
+        'Noto Sans',
         color: Colors.black,
         fontWeight: FontWeight.bold,
         fontSize: 20,
       );
-  String get subtitle1Family => 'Montserrat';
+  String get subtitle1Family => 'Noto Sans';
   TextStyle get subtitle1 => GoogleFonts.getFont(
-        'Montserrat',
+        'Noto Sans',
         color: Colors.black,
         fontWeight: FontWeight.bold,
         fontSize: 18,
       );
-  String get subtitle2Family => 'Montserrat';
+  String get subtitle2Family => 'Noto Sans';
   TextStyle get subtitle2 => GoogleFonts.getFont(
-        'Montserrat',
+        'Noto Sans',
         color: Colors.black,
         fontWeight: FontWeight.w600,
         fontSize: 16,
       );
-  String get bodyText1Family => 'Montserrat';
+  String get bodyText1Family => 'Noto Sans';
   TextStyle get bodyText1 => GoogleFonts.getFont(
-        'Montserrat',
+        'Noto Sans',
         color: Colors.black,
         fontWeight: FontWeight.normal,
         fontSize: 14,
       );
-  String get bodyText2Family => 'Montserrat';
+  String get bodyText2Family => 'Noto Sans';
   TextStyle get bodyText2 => GoogleFonts.getFont(
-        'Montserrat',
+        'Noto Sans',
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 12,

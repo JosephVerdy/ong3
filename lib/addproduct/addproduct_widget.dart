@@ -7,6 +7,7 @@ import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/flutter_flow_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart' as smooth_page_indicator;
@@ -112,6 +113,26 @@ class _AddproductWidgetState extends State<AddproductWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      appBar: AppBar(
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        automaticallyImplyLeading: false,
+        leading: FlutterFlowIconButton(
+          borderColor: Colors.transparent,
+          borderRadius: 30,
+          borderWidth: 1,
+          buttonSize: 60,
+          icon: Icon(
+            Icons.close,
+            color: FlutterFlowTheme.of(context).primaryColor,
+            size: 25,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        actions: [],
+        elevation: 0,
+      ),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -161,7 +182,7 @@ class _AddproductWidgetState extends State<AddproductWidget> {
                                           height: 40,
                                           color: FlutterFlowTheme.of(context).primaryColor,
                                           textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                                                fontFamily: 'Montserrat',
+                                                fontFamily: 'Noto Sans',
                                                 color: Colors.white,
                                                 fontSize: 12,
                                               ),
@@ -242,12 +263,11 @@ class _AddproductWidgetState extends State<AddproductWidget> {
                       children: [
                         TextFormField(
                           controller: tFprodTitleController,
-                          autofocus: true,
                           obscureText: false,
                           decoration: InputDecoration(
                             hintText: 'Product title',
                             hintStyle: FlutterFlowTheme.of(context).bodyText2.override(
-                                  fontFamily: 'Montserrat',
+                                  fontFamily: 'Noto Sans',
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -288,13 +308,12 @@ class _AddproductWidgetState extends State<AddproductWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                             child: TextFormField(
                               controller: tFprodDescriptionController,
-                              autofocus: true,
                               obscureText: false,
                               decoration: InputDecoration(
                                 isDense: true,
                                 hintText: 'Product description',
                                 hintStyle: FlutterFlowTheme.of(context).bodyText2.override(
-                                      fontFamily: 'Montserrat',
+                                      fontFamily: 'Noto Sans',
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
                                     ),
@@ -441,12 +460,11 @@ class _AddproductWidgetState extends State<AddproductWidget> {
                                   width: 80,
                                   child: TextFormField(
                                     controller: tFPriceController,
-                                    autofocus: true,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       hintText: 'Price',
                                       hintStyle: FlutterFlowTheme.of(context).bodyText2.override(
-                                            fontFamily: 'Montserrat',
+                                            fontFamily: 'Noto Sans',
                                             fontSize: 14,
                                             fontWeight: FontWeight.normal,
                                           ),
@@ -497,7 +515,7 @@ class _AddproductWidgetState extends State<AddproductWidget> {
                               height: 40,
                               color: FlutterFlowTheme.of(context).primaryColor,
                               textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                                    fontFamily: 'Montserrat',
+                                    fontFamily: 'Noto Sans',
                                     color: Colors.white,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,

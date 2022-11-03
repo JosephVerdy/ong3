@@ -38,7 +38,7 @@ class _CheckoutCartWidgetState extends State<CheckoutCartWidget> {
         title: Text(
           'Check out',
           style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Montserrat',
+                fontFamily: 'Noto Sans',
                 color: FlutterFlowTheme.of(context).primaryColor,
                 fontSize: 22,
               ),
@@ -132,7 +132,7 @@ class _CheckoutCartWidgetState extends State<CheckoutCartWidget> {
                                 Text(
                                   'Shipping address',
                                   style: FlutterFlowTheme.of(context).bodyText1.override(
-                                        fontFamily: 'Montserrat',
+                                        fontFamily: 'Noto Sans',
                                         fontSize: 15,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -156,7 +156,7 @@ class _CheckoutCartWidgetState extends State<CheckoutCartWidget> {
                             Text(
                               'Hello World',
                               style: FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Montserrat',
+                                    fontFamily: 'Noto Sans',
                                     fontSize: 12,
                                   ),
                             ),
@@ -173,7 +173,7 @@ class _CheckoutCartWidgetState extends State<CheckoutCartWidget> {
                         Text(
                           'Billing address',
                           style: FlutterFlowTheme.of(context).bodyText1.override(
-                                fontFamily: 'Montserrat',
+                                fontFamily: 'Noto Sans',
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,
                               ),

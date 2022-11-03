@@ -40,7 +40,7 @@ class _ChooseOngTypeWidgetState extends State<ChooseOngTypeWidget> {
         title: Text(
           'Choose your ONG type',
           style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Montserrat',
+                fontFamily: 'Noto Sans',
                 color: FlutterFlowTheme.of(context).primaryColor,
                 fontSize: 22,
               ),
@@ -85,7 +85,7 @@ class _ChooseOngTypeWidgetState extends State<ChooseOngTypeWidget> {
                           title: Text(
                             columnOngTypesRecord.name ?? "no name",
                             style: FlutterFlowTheme.of(context).title3.override(
-                                  fontFamily: 'Montserrat',
+                                  fontFamily: 'Noto Sans',
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
                                 ),

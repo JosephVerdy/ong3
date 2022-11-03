@@ -68,7 +68,7 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
             title: Text(
               'Page Title',
               style: FlutterFlowTheme.of(context).title2.override(
-                    fontFamily: 'Montserrat',
+                    fontFamily: 'Noto Sans',
                     color: FlutterFlowTheme.of(context).primaryColor,
                     fontSize: 22,
                   ),
@@ -204,7 +204,7 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                             return Text(
                               textOngsRecord.name!,
                               style: FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Montserrat',
+                                    fontFamily: 'Noto Sans',
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -215,7 +215,7 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                           prodDetailProductsRecord.price!.toString(),
                           textAlign: TextAlign.end,
                           style: FlutterFlowTheme.of(context).bodyText1.override(
-                                fontFamily: 'Montserrat',
+                                fontFamily: 'Noto Sans',
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -232,7 +232,7 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                           child: Text(
                             prodDetailProductsRecord.title!,
                             style: FlutterFlowTheme.of(context).title1.override(
-                                  fontFamily: 'Montserrat',
+                                  fontFamily: 'Noto Sans',
                                   fontSize: 16,
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -249,7 +249,7 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                         AutoSizeText(
                           prodDetailProductsRecord.description!,
                           style: FlutterFlowTheme.of(context).subtitle1.override(
-                                fontFamily: 'Montserrat',
+                                fontFamily: 'Noto Sans',
                                 color: FlutterFlowTheme.of(context).primaryColor,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
@@ -291,7 +291,7 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                               child: Text(
                                 rowTimeUsersRecord.displayName!,
                                 style: FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Montserrat',
+                                      fontFamily: 'Noto Sans',
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -333,7 +333,7 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                             height: 40,
                             color: FlutterFlowTheme.of(context).secondaryColor,
                             textStyle: FlutterFlowTheme.of(context).title3.override(
-                                  fontFamily: 'Montserrat',
+                                  fontFamily: 'Noto Sans',
                                   color: FlutterFlowTheme.of(context).black600,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,
@@ -365,7 +365,7 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                         height: 40,
                         color: FlutterFlowTheme.of(context).primaryColor,
                         textStyle: FlutterFlowTheme.of(context).title3.override(
-                              fontFamily: 'Montserrat',
+                              fontFamily: 'Noto Sans',
                               color: Colors.white,
                               fontSize: 12,
                               fontWeight: FontWeight.w600,

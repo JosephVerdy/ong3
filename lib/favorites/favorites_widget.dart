@@ -190,7 +190,7 @@ class _FavoritesWidgetState extends State<FavoritesWidget> {
                                                 child: Text(
                                                   listViewProductsRecord.description!,
                                                   style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                        fontFamily: 'Montserrat',
+                                                        fontFamily: 'Noto Sans',
                                                         fontSize: 12,
                                                       ),
                                                 ),
@@ -200,7 +200,7 @@ class _FavoritesWidgetState extends State<FavoritesWidget> {
                                                 child: Text(
                                                   listViewProductsRecord.price!.toString(),
                                                   style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                        fontFamily: 'Montserrat',
+                                                        fontFamily: 'Noto Sans',
                                                         fontSize: 12,
                                                       ),
                                                 ),
@@ -217,7 +217,7 @@ class _FavoritesWidgetState extends State<FavoritesWidget> {
                                                     height: 30,
                                                     color: FlutterFlowTheme.of(context).primaryColor,
                                                     textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                                                          fontFamily: 'Montserrat',
+                                                          fontFamily: 'Noto Sans',
                                                           color: Colors.white,
                                                           fontSize: 12,
                                                         ),

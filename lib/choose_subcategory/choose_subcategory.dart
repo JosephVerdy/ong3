@@ -40,7 +40,7 @@ class _ChooseSubCategoryWidgetState extends State<ChooseSubCategoryWidget> {
         title: Text(
           'Choose SubCategory',
           style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Montserrat',
+                fontFamily: 'Noto Sans',
                 color: FlutterFlowTheme.of(context).primaryColor,
                 fontSize: 22,
               ),
@@ -79,7 +79,7 @@ class _ChooseSubCategoryWidgetState extends State<ChooseSubCategoryWidget> {
                           title: Text(
                             columnSubCategoryRecord.name ?? "no name",
                             style: FlutterFlowTheme.of(context).title3.override(
-                                  fontFamily: 'Montserrat',
+                                  fontFamily: 'Noto Sans',
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
                                 ),

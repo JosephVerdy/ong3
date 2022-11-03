@@ -128,7 +128,7 @@ class _ForgotpasswordWidgetState extends State<ForgotpasswordWidget> {
                       height: 40,
                       color: FlutterFlowTheme.of(context).primaryColor,
                       textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                            fontFamily: 'Montserrat',
+                            fontFamily: 'Noto Sans',
                             color: Colors.white,
                             fontSize: 12,
                           ),

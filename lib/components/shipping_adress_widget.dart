@@ -60,7 +60,7 @@ class _ShippingAdressWidgetState extends State<ShippingAdressWidget> {
               Text(
                 'Shipping address',
                 style: FlutterFlowTheme.of(context).bodyText1.override(
-                      fontFamily: 'Montserrat',
+                      fontFamily: 'Noto Sans',
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                     ),
@@ -73,7 +73,7 @@ class _ShippingAdressWidgetState extends State<ShippingAdressWidget> {
                   width: 180,
                   height: 30,
                   textStyle: FlutterFlowTheme.of(context).bodyText1.override(
-                        fontFamily: 'Montserrat',
+                        fontFamily: 'Noto Sans',
                         color: Colors.black,
                       ),
                   hintText: 'Civilité',
@@ -399,7 +399,7 @@ class _ShippingAdressWidgetState extends State<ShippingAdressWidget> {
                     height: 30,
                     color: FlutterFlowTheme.of(context).primaryColor,
                     textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                          fontFamily: 'Montserrat',
+                          fontFamily: 'Noto Sans',
                           color: Colors.white,
                           fontSize: 12,
                         ),

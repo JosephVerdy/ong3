@@ -40,7 +40,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         title: Text(
           'Welcome',
           style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Montserrat',
+                fontFamily: 'Noto Sans',
                 color: FlutterFlowTheme.of(context).primaryColor,
                 fontSize: 22,
               ),
@@ -225,7 +225,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           height: 40,
                           color: FlutterFlowTheme.of(context).primaryColor,
                           textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                                fontFamily: 'Montserrat',
+                                fontFamily: 'Noto Sans',
                                 color: Colors.white,
                                 fontSize: 12,
                               ),

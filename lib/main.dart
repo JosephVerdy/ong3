@@ -126,10 +126,21 @@ class _NavBarPageState extends State<NavBarPage> {
       extendBody: true,
       bottomNavigationBar: FloatingNavbar(
         currentIndex: currentIndex,
-        onTap: (i) => setState(() {
-          _currentPage = null;
-          _currentPageName = tabs.keys.toList()[i];
-        }),
+        onTap: (i) => {
+          if (tabs.keys.toList()[i] == 'Addproduct')
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddproductWidget(),
+                ))
+          else
+            {
+              setState(() {
+                _currentPage = null;
+                _currentPageName = tabs.keys.toList()[i];
+              })
+            }
+        },
         backgroundColor: Color(0xFFEDECEC),
         selectedItemColor: Colors.black,
         unselectedItemColor: FlutterFlowTheme.of(context).tertiaryColor,
