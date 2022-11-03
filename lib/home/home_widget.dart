@@ -1,11 +1,11 @@
 import '../backend/backend.dart';
+import '../favorites/favorites.dart';
 import '../flutter_flow/flutter_flow_autocomplete_options_list.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_toggle_icon.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import '../prod_detail/prod_detail_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../favorites/favorite_icon_widget.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({Key? key}) : super(key: key);
@@ -20,6 +20,10 @@ class _HomeWidgetState extends State<HomeWidget> {
   TextEditingController? tFSearchController;
   String? tFSearchSelectedOption;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  _HomeWidgetState() {
+    Favorites.loadFavorites();
+  }
 
   @override
   void initState() {
@@ -291,22 +295,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         ),
                                         Align(
                                           alignment: AlignmentDirectional(1, 1),
-                                          child: ToggleIcon(
-                                            onPressed: () async {
-                                              setState(() => FFAppState().teste = !FFAppState().teste);
-                                            },
-                                            value: FFAppState().teste,
-                                            onIcon: Icon(
-                                              FFIcons.kfavorite,
-                                              color: Colors.black,
-                                              size: 20,
-                                            ),
-                                            offIcon: Icon(
-                                              FFIcons.kfavoriteBorder,
-                                              color: Colors.black,
-                                              size: 20,
-                                            ),
-                                          ),
+                                          child: FavoriteIconWidget(productParameter: wrapProductsRecord),
                                         ),
                                       ],
                                     ),
