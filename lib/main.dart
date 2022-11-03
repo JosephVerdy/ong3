@@ -100,7 +100,7 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPageName = 'Home';
+  String _currentPageName = 'Search';
   late Widget? _currentPage;
 
   @override
@@ -114,7 +114,7 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'Profile': ProfileWidget(),
-      'Home': HomeWidget(),
+      'Search': HomeWidget(),
       'Addproduct': AddproductWidget(),
       'Allchats': AllchatsWidget(),
       'Favorites': FavoritesWidget(),
@@ -176,12 +176,12 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  FFIcons.khome,
+                  Icons.search,
                   color: currentIndex == 1 ? Colors.black : FlutterFlowTheme.of(context).tertiaryColor,
                   size: 24,
                 ),
                 Text(
-                  'Home',
+                  'Search',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 1 ? Colors.black : FlutterFlowTheme.of(context).tertiaryColor,

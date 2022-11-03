@@ -2,6 +2,7 @@ import '../backend/backend.dart';
 import '../favorites/favorites.dart';
 import '../flutter_flow/flutter_flow_autocomplete_options_list.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
+import '../ongs/ongs.dart';
 import '../prod_detail/prod_detail_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   _HomeWidgetState() {
     Favorites.loadFavorites();
+    Ongs.loadOngs();
   }
 
   @override
@@ -261,14 +263,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                               width: MediaQuery.of(context).size.width * 0.45,
                               height: MediaQuery.of(context).size.height * 0.3,
                               decoration: BoxDecoration(
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 2,
-                                    color: Color(0x33000000),
-                                    offset: Offset(0, 1),
-                                  )
-                                ],
                                 borderRadius: BorderRadius.circular(2),
                                 shape: BoxShape.rectangle,
                               ),

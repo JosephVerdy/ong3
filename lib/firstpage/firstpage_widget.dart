@@ -339,7 +339,7 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => NavBarPage(initialPage: 'Home'),
+                                            builder: (context) => NavBarPage(initialPage: 'Search'),
                                           ),
                                         );
                                       },
@@ -368,7 +368,7 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => NavBarPage(initialPage: 'Home'),
+                                            builder: (context) => NavBarPage(initialPage: 'Search'),
                                           ),
                                         );
                                       },
@@ -502,7 +502,7 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => NavBarPage(initialPage: 'Home'),
+                                            builder: (context) => NavBarPage(initialPage: 'Search'),
                                           ),
                                         );
                                       },

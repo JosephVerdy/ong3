@@ -103,7 +103,7 @@ class _AddproductWidgetState extends State<AddproductWidget> {
     await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => NavBarPage(initialPage: 'Home'),
+        builder: (context) => NavBarPage(initialPage: 'Search'),
       ),
     );
   }

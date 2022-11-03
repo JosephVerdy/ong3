@@ -60,7 +60,7 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => NavBarPage(initialPage: 'Home'),
+                    builder: (context) => NavBarPage(initialPage: 'Search'),
                   ),
                 );
               },
