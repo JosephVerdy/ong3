@@ -4,6 +4,8 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import '../main.dart';
+import '../myproducts/myproducts_widget.dart';
 
 class ProfileWidget extends StatefulWidget {
   const ProfileWidget({Key? key}) : super(key: key);
@@ -90,25 +92,35 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     decoration: BoxDecoration(
                       color: Color(0xEEEEEEEE),
                     ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
-                          child: Icon(
-                            Icons.favorite_border,
-                            color: Colors.black,
-                            size: 24,
+                    child: InkWell(
+                      onTap: () async {
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => NavBarPage(initialPage: 'Favorites'),
                           ),
-                        ),
-                        Align(
-                          alignment: AlignmentDirectional(-0.95, 0.05),
-                          child: Text(
-                            'My favorites',
-                            style: FlutterFlowTheme.of(context).bodyText1,
+                        );
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
+                            child: Icon(
+                              Icons.favorite_border,
+                              color: Colors.black,
+                              size: 24,
+                            ),
                           ),
-                        ),
-                      ],
+                          Align(
+                            alignment: AlignmentDirectional(-0.95, 0.05),
+                            child: Text(
+                              'My favorites',
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -120,25 +132,35 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     decoration: BoxDecoration(
                       color: Color(0xFFEEEEEE),
                     ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
-                          child: Icon(
-                            Icons.inbox_outlined,
-                            color: Colors.black,
-                            size: 24,
+                    child: InkWell(
+                      onTap: () async {
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MyProductsWidget(),
                           ),
-                        ),
-                        Align(
-                          alignment: AlignmentDirectional(-0.95, 0.05),
-                          child: Text(
-                            'My orders',
-                            style: FlutterFlowTheme.of(context).bodyText1,
+                        );
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
+                            child: Icon(
+                              Icons.inbox_outlined,
+                              color: Colors.black,
+                              size: 24,
+                            ),
                           ),
-                        ),
-                      ],
+                          Align(
+                            alignment: AlignmentDirectional(-0.95, 0.05),
+                            child: Text(
+                              'My orders',
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -150,25 +172,35 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     decoration: BoxDecoration(
                       color: Color(0xFFEEEEEE),
                     ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
-                          child: Icon(
-                            Icons.storefront_sharp,
-                            color: Colors.black,
-                            size: 24,
+                    child: InkWell(
+                      onTap: () async {
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MyProductsWidget(),
                           ),
-                        ),
-                        Align(
-                          alignment: AlignmentDirectional(-0.95, 0.05),
-                          child: Text(
-                            'My products',
-                            style: FlutterFlowTheme.of(context).bodyText1,
+                        );
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
+                            child: Icon(
+                              Icons.storefront_sharp,
+                              color: Colors.black,
+                              size: 24,
+                            ),
                           ),
-                        ),
-                      ],
+                          Align(
+                            alignment: AlignmentDirectional(-0.95, 0.05),
+                            child: Text(
+                              'My products',
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

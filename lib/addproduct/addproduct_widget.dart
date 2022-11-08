@@ -2,20 +2,24 @@ import 'dart:io';
 import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:ong3/index.dart';
 import 'package:ong3/main.dart';
+import 'package:ong3/ongs/ongs.dart';
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart' as smooth_page_indicator;
 
-class AddproductWidget extends StatefulWidget {
-  const AddproductWidget({Key? key, this.productRef}) : super(key: key);
+import '../myproducts/myproducts_widget.dart';
 
-  final DocumentReference? productRef;
+class AddproductWidget extends StatefulWidget {
+  const AddproductWidget({Key? key, this.product}) : super(key: key);
+
+  final ProductsRecord? product;
 
   @override
   _AddproductWidgetState createState() => _AddproductWidgetState();
@@ -50,9 +54,19 @@ class _AddproductWidgetState extends State<AddproductWidget> {
   @override
   void initState() {
     super.initState();
-    tFPriceController = TextEditingController();
-    tFprodDescriptionController = TextEditingController();
-    tFprodTitleController = TextEditingController();
+
+    tFPriceController = TextEditingController(
+        text: formatNumber(
+      widget.product?.price,
+      formatType: FormatType.decimal,
+      decimalType: DecimalType.automatic,
+    ));
+    tFprodDescriptionController = TextEditingController(text: widget.product?.description);
+    tFprodTitleController = TextEditingController(text: widget.product?.title);
+    if (widget.product != null) {
+      selectedOng = Ongs.getOngRecord(widget.product?.ong);
+      // TOOD set subcategory
+    }
   }
 
   @override
@@ -84,28 +98,43 @@ class _AddproductWidgetState extends State<AddproductWidget> {
   }
 
   Future _submit() async {
-    if ((_imageList.length == 0 && widget.productRef != null) || selectedOng == null || selectedSubCategory == null || tFprodTitleController?.text == null || _imageList.length == 0) {
+    if (widget.product == null && (_imageList.length == 0 || selectedOng == null || selectedSubCategory == null || tFprodTitleController?.text == null)) {
       return;
     }
 
-    XFile thumbfile = _imageList[0];
-    var thumbRef = await uploadImage(thumbfile.path, 400);
+    if (widget.product == null) {
+      XFile thumbfile = _imageList[0];
+      var thumbRef = await uploadImage(thumbfile.path, 400);
 
-    final Map<String, dynamic> productRecord = createProductsRecordData(title: tFprodTitleController?.text, description: tFprodDescriptionController?.text, price: double.tryParse(tFPriceController?.text ?? "0"), createdDate: DateTime.now(), ong: selectedOng?.reference, subCategory: selectedSubCategory?.reference, vendor: currentUserReference, thumbnail: thumbRef);
-    final productRef = await ProductsRecord.collection.add(productRecord);
-
-    for (int i = 0; i < _imageList.length; i++) {
-      XFile xfile = _imageList[i];
-      var imageRef = await uploadImage(xfile.path, 800);
-      if (imageRef != null) productRef.collection('images').add(createImagesRecordData(path: imageRef));
+      final Map<String, dynamic> productRecord = createProductsRecordData(title: tFprodTitleController?.text, description: tFprodDescriptionController?.text, price: double.tryParse(tFPriceController?.text ?? "0"), createdDate: DateTime.now(), ong: selectedOng?.reference, subCategory: selectedSubCategory?.reference, vendor: currentUserReference, thumbnail: thumbRef);
+      final productRef = await ProductsRecord.collection.add(productRecord);
+      for (int i = 0; i < _imageList.length; i++) {
+        XFile xfile = _imageList[i];
+        var imageRef = await uploadImage(xfile.path, 800);
+        if (imageRef != null) productRef.collection('images').add(createImagesRecordData(path: imageRef));
+      }
+    } else {
+      final Map<String, dynamic> productRecord = createProductsRecordData(title: tFprodTitleController?.text, description: tFprodDescriptionController?.text, price: double.tryParse(tFPriceController?.text ?? "0"), createdDate: DateTime.now(), ong: selectedOng?.reference, subCategory: selectedSubCategory?.reference, vendor: currentUserReference, thumbnail: widget.product?.thumbnail);
+      await ProductsRecord.collection.doc(widget.product?.reference.id).update(productRecord);
+      // TODO update images
     }
 
-    await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => NavBarPage(initialPage: 'Search'),
-      ),
-    );
+    if (widget.product == null) {
+      await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => NavBarPage(initialPage: 'Profile'),
+        ),
+      );
+      await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MyProductsWidget(),
+        ),
+      );
+    } else {
+      Navigator.pop(context);
+    }
   }
 
   @override
@@ -146,10 +175,10 @@ class _AddproductWidgetState extends State<AddproductWidget> {
                     height: 400,
                     decoration: BoxDecoration(),
                     child: StreamBuilder<List<ImagesRecord>>(
-                      stream: widget.productRef == null ? Stream<List<ImagesRecord>>.empty() : queryImagesRecord(parent: widget.productRef),
+                      stream: widget.product == null ? Stream<List<ImagesRecord>>.empty() : queryImagesRecord(parent: widget.product?.reference),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
-                        if (widget.productRef != null && !snapshot.hasData) {
+                        if (widget.product != null && !snapshot.hasData) {
                           return Center(
                             child: LinearProgressIndicator(
                               color: FlutterFlowTheme.of(context).primaryColor,
@@ -169,7 +198,7 @@ class _AddproductWidgetState extends State<AddproductWidget> {
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
                                 child: PageView.builder(
-                                  controller: pageViewController ??= PageController(initialPage: pageViewImagesRecordList.length),
+                                  controller: pageViewController ??= PageController(initialPage: 0),
                                   scrollDirection: Axis.horizontal,
                                   itemCount: pageViewImagesRecordList.length + 1,
                                   itemBuilder: (context, pageViewIndex) {
@@ -375,7 +404,7 @@ class _AddproductWidgetState extends State<AddproductWidget> {
                                     builder: (context) => ChooseOngTypeWidget(),
                                   ),
                                 );
-                                setState(() => selectedOng = newOng);
+                                if (newOng != null) setState(() => selectedOng = newOng);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -420,7 +449,7 @@ class _AddproductWidgetState extends State<AddproductWidget> {
                                     builder: (context) => ChooseCategoryWidget(),
                                   ),
                                 );
-                                setState(() => selectedSubCategory = newSubCategory);
+                                if (newSubCategory != null) setState(() => selectedSubCategory = newSubCategory);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,

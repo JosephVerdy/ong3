@@ -5,7 +5,6 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart' as smooth_page_indicator;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +43,7 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).secondaryColor,
           appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            backgroundColor: Color(0xFFF5F5F5),
             automaticallyImplyLeading: false,
             leading: FlutterFlowIconButton(
               borderColor: Colors.transparent,
@@ -52,21 +51,16 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
               borderWidth: 1,
               buttonSize: 60,
               icon: Icon(
-                Icons.arrow_back,
+                Icons.close,
                 color: FlutterFlowTheme.of(context).primaryColor,
                 size: 25,
               ),
               onPressed: () async {
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => NavBarPage(initialPage: 'Search'),
-                  ),
-                );
+                Navigator.pop(context);
               },
             ),
             title: Text(
-              'Page Title',
+              prodDetailProductsRecord.title!,
               style: FlutterFlowTheme.of(context).title2.override(
                     fontFamily: 'Noto Sans',
                     color: FlutterFlowTheme.of(context).primaryColor,
@@ -219,24 +213,6 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            prodDetailProductsRecord.title!,
-                            style: FlutterFlowTheme.of(context).title1.override(
-                                  fontFamily: 'Noto Sans',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                          ),
                         ),
                       ],
                     ),

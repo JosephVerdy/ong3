@@ -1,5 +1,3 @@
-import 'package:firebase_storage/firebase_storage.dart';
-
 import '../backend/backend.dart';
 
 class Ongs {
@@ -14,5 +12,9 @@ class Ongs {
 
   static String getOngName(DocumentReference? reference) {
     return ongsMap[reference]?.name ?? "";
+  }
+
+  static OngsRecord? getOngRecord(DocumentReference? reference) {
+    return ongsMap[reference];
   }
 }
