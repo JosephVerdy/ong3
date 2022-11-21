@@ -63,9 +63,19 @@ class _AddproductWidgetState extends State<AddproductWidget> {
     ));
     tFprodDescriptionController = TextEditingController(text: widget.product?.description);
     tFprodTitleController = TextEditingController(text: widget.product?.title);
+
     if (widget.product != null) {
-      selectedOng = Ongs.getOngRecord(widget.product?.ong);
-      // TOOD set subcategory
+      selectedOng = Ongs.getOngRecord(widget.product!.ong);
+
+      if (widget.product!.subCategory != null) {
+        () async {
+          var subcategegory = await SubCategoryRecord.getDocumentOnce(widget.product!.subCategory!);
+          //await _performYourTask();
+          setState(() {
+            selectedSubCategory = subcategegory;
+          });
+        }();
+      }
     }
   }
 

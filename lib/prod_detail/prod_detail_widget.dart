@@ -9,6 +9,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart' as smooth_page
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
+import '../ongs/ongs.dart';
+
 class ProdDetailWidget extends StatefulWidget {
   const ProdDetailWidget({
     Key? key,
@@ -183,27 +185,13 @@ class _ProdDetailWidgetState extends State<ProdDetailWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        StreamBuilder<OngsRecord>(
-                          stream: OngsRecord.getDocument(prodDetailProductsRecord.ong!),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: LinearProgressIndicator(
-                                  color: FlutterFlowTheme.of(context).primaryColor,
-                                ),
-                              );
-                            }
-                            final textOngsRecord = snapshot.data!;
-                            return Text(
-                              textOngsRecord.name!,
-                              style: FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Noto Sans',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            );
-                          },
+                        Text(
+                          Ongs.getOngName(prodDetailProductsRecord.ong),
+                          style: FlutterFlowTheme.of(context).bodyText1.override(
+                                fontFamily: 'Noto Sans',
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
                         ),
                         Text(
                           prodDetailProductsRecord.price!.toString(),
