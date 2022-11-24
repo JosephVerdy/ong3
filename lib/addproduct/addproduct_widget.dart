@@ -47,7 +47,8 @@ class _AddproductWidgetState extends State<AddproductWidget> {
   TextEditingController? tFprodTitleController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final ImagePicker _picker = ImagePicker();
-  final List<XFile> _imageList = [];
+  final List<XFile> _newImageList = [];
+  final List<_Image> _imageList = [];
   SubCategoryRecord? selectedSubCategory;
   OngsRecord? selectedOng;
 
@@ -64,19 +65,7 @@ class _AddproductWidgetState extends State<AddproductWidget> {
     tFprodDescriptionController = TextEditingController(text: widget.product?.description);
     tFprodTitleController = TextEditingController(text: widget.product?.title);
 
-    if (widget.product != null) {
-      selectedOng = Ongs.getOngRecord(widget.product!.ong);
-
-      if (widget.product!.subCategory != null) {
-        () async {
-          var subcategegory = await SubCategoryRecord.getDocumentOnce(widget.product!.subCategory!);
-          //await _performYourTask();
-          setState(() {
-            selectedSubCategory = subcategegory;
-          });
-        }();
-      }
-    }
+    if (widget.product != null) _loadProduct();
   }
 
   @override
@@ -91,9 +80,23 @@ class _AddproductWidgetState extends State<AddproductWidget> {
     try {
       List<XFile> pickedFileList = await _picker.pickMultiImage();
       setState(() {
-        _imageList.addAll(pickedFileList);
+        _newImageList.addAll(pickedFileList);
+        _imageList.addAll(pickedFileList.map((e) => _Image.fromFile(e)));
       });
     } catch (e) {}
+  }
+
+  Future _loadProduct() async {
+    var subcategegory = await SubCategoryRecord.getDocumentOnce(widget.product!.subCategory!);
+
+    Stream<List<ImagesRecord>> stream = queryImagesRecord(parent: widget.product!.reference);
+    await for (final imagesRecords in stream) {
+      setState(() {
+        selectedSubCategory = subcategegory;
+        selectedOng = Ongs.getOngRecord(widget.product!.ong);
+        _imageList.addAll(imagesRecords.map((e) => _Image.fromRecord(e)));
+      });
+    }
   }
 
   Future<String?> uploadImage(String path, int maxWidth) async {
@@ -108,18 +111,18 @@ class _AddproductWidgetState extends State<AddproductWidget> {
   }
 
   Future _submit() async {
-    if (widget.product == null && (_imageList.length == 0 || selectedOng == null || selectedSubCategory == null || tFprodTitleController?.text == null)) {
+    if (widget.product == null && (_newImageList.length == 0 || selectedOng == null || selectedSubCategory == null || tFprodTitleController?.text == null)) {
       return;
     }
 
     if (widget.product == null) {
-      XFile thumbfile = _imageList[0];
+      XFile thumbfile = _newImageList[0];
       var thumbRef = await uploadImage(thumbfile.path, 400);
 
       final Map<String, dynamic> productRecord = createProductsRecordData(title: tFprodTitleController?.text, description: tFprodDescriptionController?.text, price: double.tryParse(tFPriceController?.text ?? "0"), createdDate: DateTime.now(), ong: selectedOng?.reference, subCategory: selectedSubCategory?.reference, vendor: currentUserReference, thumbnail: thumbRef);
       final productRef = await ProductsRecord.collection.add(productRecord);
-      for (int i = 0; i < _imageList.length; i++) {
-        XFile xfile = _imageList[i];
+      for (int i = 0; i < _newImageList.length; i++) {
+        XFile xfile = _newImageList[i];
         var imageRef = await uploadImage(xfile.path, 800);
         if (imageRef != null) productRef.collection('images').add(createImagesRecordData(path: imageRef));
       }
@@ -182,119 +185,100 @@ class _AddproductWidgetState extends State<AddproductWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Container(
-                    height: 400,
-                    decoration: BoxDecoration(),
-                    child: StreamBuilder<List<ImagesRecord>>(
-                      stream: widget.product == null ? Stream<List<ImagesRecord>>.empty() : queryImagesRecord(parent: widget.product?.reference),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (widget.product != null && !snapshot.hasData) {
-                          return Center(
-                            child: LinearProgressIndicator(
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                            ),
-                          );
-                        }
-                        List<_Image> pageViewImagesRecordList = [];
-                        if (snapshot.data != null) pageViewImagesRecordList.addAll(snapshot.data!.map((e) => _Image.fromRecord(e)));
-
-                        pageViewImagesRecordList.addAll(_imageList.map((e) => (_Image.fromFile(e))));
-
-                        return Container(
-                          width: double.infinity,
-                          height: 400,
-                          child: Stack(
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
-                                child: PageView.builder(
-                                  controller: pageViewController ??= PageController(initialPage: 0),
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: pageViewImagesRecordList.length + 1,
-                                  itemBuilder: (context, pageViewIndex) {
-                                    if (pageViewIndex == pageViewImagesRecordList.length) {
-                                      return FFButtonWidget(
-                                        onPressed: _openImagePicker,
-                                        text: 'Add photos',
-                                        options: FFButtonOptions(
-                                          width: 130,
-                                          height: 40,
-                                          color: FlutterFlowTheme.of(context).primaryColor,
-                                          textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                                                fontFamily: 'Noto Sans',
-                                                color: Colors.white,
-                                                fontSize: 12,
-                                              ),
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1,
-                                          ),
-                                          borderRadius: BorderRadius.circular(8),
+                      height: 400,
+                      decoration: BoxDecoration(),
+                      child: Container(
+                        width: double.infinity,
+                        height: 400,
+                        child: Stack(
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
+                              child: PageView.builder(
+                                controller: pageViewController ??= PageController(initialPage: 0),
+                                scrollDirection: Axis.horizontal,
+                                itemCount: _imageList.length + 1,
+                                itemBuilder: (context, pageViewIndex) {
+                                  if (pageViewIndex == _imageList.length) {
+                                    return FFButtonWidget(
+                                      onPressed: _openImagePicker,
+                                      text: 'Add photos',
+                                      options: FFButtonOptions(
+                                        width: 130,
+                                        height: 40,
+                                        color: FlutterFlowTheme.of(context).primaryColor,
+                                        textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                                              fontFamily: 'Noto Sans',
+                                              color: Colors.white,
+                                              fontSize: 12,
+                                            ),
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1,
                                         ),
-                                      );
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    );
+                                  } else {
+                                    final pageViewImage = _imageList[pageViewIndex];
+                                    if (pageViewImage.isNew) {
+                                      return Image.file(File(pageViewImage.file!.path), width: 100, height: 300, fit: BoxFit.cover);
                                     } else {
-                                      final pageViewImage = pageViewImagesRecordList[pageViewIndex];
-                                      if (pageViewImage.isNew) {
-                                        return Image.file(File(pageViewImage.file!.path), width: 100, height: 300, fit: BoxFit.cover);
-                                      } else {
-                                        return StreamBuilder<ImagesRecord>(
-                                          stream: ImagesRecord.getDocument(pageViewImage.record!.reference),
-                                          builder: (context, snapshot) {
-                                            // Customize what your widget looks like when it's loading.
-                                            if (!snapshot.hasData) {
-                                              return Center(
-                                                child: LinearProgressIndicator(
-                                                  color: FlutterFlowTheme.of(context).primaryColor,
-                                                ),
-                                              );
-                                            }
-                                            final imageImagesRecord = snapshot.data!;
-                                            return Image.network(
-                                              imageImagesRecord.path!,
-                                              width: 100,
-                                              height: 300,
-                                              fit: BoxFit.cover,
+                                      return StreamBuilder<ImagesRecord>(
+                                        stream: ImagesRecord.getDocument(pageViewImage.record!.reference),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: LinearProgressIndicator(
+                                                color: FlutterFlowTheme.of(context).primaryColor,
+                                              ),
                                             );
-                                          },
-                                        );
-                                      }
-                                    }
-                                  },
-                                ),
-                              ),
-                              Align(
-                                alignment: AlignmentDirectional(0, 0.9),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                                  child: smooth_page_indicator.SmoothPageIndicator(
-                                    controller: pageViewController ??= PageController(initialPage: pageViewImagesRecordList.length),
-                                    count: pageViewImagesRecordList.length + 1,
-                                    axisDirection: Axis.horizontal,
-                                    onDotClicked: (i) {
-                                      pageViewController!.animateToPage(
-                                        i,
-                                        duration: Duration(milliseconds: 500),
-                                        curve: Curves.ease,
+                                          }
+                                          final imageImagesRecord = snapshot.data!;
+                                          return Image.network(
+                                            imageImagesRecord.path!,
+                                            width: 100,
+                                            height: 300,
+                                            fit: BoxFit.cover,
+                                          );
+                                        },
                                       );
-                                    },
-                                    effect: smooth_page_indicator.SlideEffect(
-                                      spacing: 8,
-                                      radius: 16,
-                                      dotWidth: 5,
-                                      dotHeight: 5,
-                                      dotColor: Color(0xFF9E9E9E),
-                                      activeDotColor: Color(0xFF3F51B5),
-                                      paintStyle: PaintingStyle.fill,
-                                    ),
+                                    }
+                                  }
+                                },
+                              ),
+                            ),
+                            Align(
+                              alignment: AlignmentDirectional(0, 0.9),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                                child: smooth_page_indicator.SmoothPageIndicator(
+                                  controller: pageViewController ??= PageController(initialPage: _imageList.length),
+                                  count: _imageList.length + 1,
+                                  axisDirection: Axis.horizontal,
+                                  onDotClicked: (i) {
+                                    pageViewController!.animateToPage(
+                                      i,
+                                      duration: Duration(milliseconds: 500),
+                                      curve: Curves.ease,
+                                    );
+                                  },
+                                  effect: smooth_page_indicator.SlideEffect(
+                                    spacing: 8,
+                                    radius: 16,
+                                    dotWidth: 5,
+                                    dotHeight: 5,
+                                    dotColor: Color(0xFF9E9E9E),
+                                    activeDotColor: Color(0xFF3F51B5),
+                                    paintStyle: PaintingStyle.fill,
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+                            ),
+                          ],
+                        ),
+                      )),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                     child: Column(
